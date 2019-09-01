@@ -75,7 +75,7 @@ function processCommand(receivedMessage) {
             directMessageCommand(arguments, receivedMessage)
         break;
         default:
-            receivedMessage.channel.send("I don't understand the command. Try `!help`")
+            receivedMessage.channel.send("I don't understand the command. Try `"+prefix+"help`")
     }
 }
 
