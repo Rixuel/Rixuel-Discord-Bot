@@ -1,7 +1,7 @@
 // Tuto: https://www.devdungeon.com/content/javascript-discord-bot-tutorial
 const Discord = require('discord.js')
 const client = new Discord.Client()
-var auth = require('./auth.json');
+// var auth = require('./auth.json');
 var prefix = "c!";
 
 client.on('ready', () => {
