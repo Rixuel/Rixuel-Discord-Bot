@@ -65,6 +65,9 @@ function processCommand(receivedMessage) {
         case "hex":
             hexCommand(arguments, receivedMessage)
         break;
+        case "hi":
+            receivedMessage.channel.send("Hiya ^^")
+        break;
         case "rixuel":
             receivedMessage.channel.send("Our lord and savior :3")
         break;
@@ -72,7 +75,7 @@ function processCommand(receivedMessage) {
             directMessageCommand(arguments, receivedMessage)
         break;
         default:
-            receivedMessage.channel.send("I don't understand the command. Try `!help` or `!multiply`")
+            receivedMessage.channel.send("I don't understand the command. Try `!help`")
     }
 }
 
