@@ -1,0 +1,15 @@
+{
+    "name": "kureimoa-bot",
+    "version": "1.0.0",
+    "description": "First Discord Bot of Rixuel",
+    "main": "bot.js",
+    "scripts": {
+        "start": "node bot.js"
+    },
+    "author": "Rixuel Neoliv",
+    "dependencies": {
+        "discord.js": "^11.5.1",
+        "winston": "^3.2.1",
+        "request": "2.81.0"
+    }
+}
