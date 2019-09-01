@@ -197,5 +197,5 @@ function hexCommand(arguments, receivedMessage) {
 // https://discordapp.com/developers/applications/
 // Click on your application -> Bot -> Token -> "Click to Reveal Token"
 
-// auth.token
+// client.login(auth.token)
 client.login(process.env.BOT_TOKEN)
