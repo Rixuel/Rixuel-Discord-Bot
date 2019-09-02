@@ -70,6 +70,9 @@ function processCommand(receivedMessage) {
         case "note":
             noteCommand(arguments, receivedMessage)
         break;
+        case "ping":
+            receivedMessage.channel.send("`" + (receivedMessage.createdTimestamp - new Date().getTime()) + " ms`");
+        break;
         case "prefix":
             receivedMessage.channel.send("The prefix is: `" + prefix + "`")
         break;
@@ -94,6 +97,7 @@ function helpCommand(arguments, receivedMessage) {
     + "`countwords` : Counting words\n"
     + "`hex` : Encoding\n"
     + "`note` : Note for yourself\n"
+    + "`ping` : Pong!\n"
     + "`prefix` : Bot's prefix\n"
     + "`dm` : Rixuel only command\n"
     + "-----\n";
