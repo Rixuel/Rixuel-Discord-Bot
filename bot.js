@@ -1,7 +1,6 @@
-// Tuto: https://www.devdungeon.com/content/javascript-discord-bot-tutorial
 const Discord = require('discord.js')
 const client = new Discord.Client()
-// var auth = require('./auth.json');
+//var auth = require('./auth.json');
 var prefix = "c!";
 
 client.on('ready', () => {
@@ -68,6 +67,12 @@ function processCommand(receivedMessage) {
         case "hi":
             receivedMessage.channel.send("Hiya ^^")
         break;
+        case "note":
+            noteCommand(arguments, receivedMessage)
+        break;
+        case "prefix":
+            receivedMessage.channel.send("The prefix is: `" + prefix + "`")
+        break;
         case "rixuel":
             receivedMessage.channel.send("Our lord and savior :3")
         break;
@@ -88,6 +93,8 @@ function helpCommand(arguments, receivedMessage) {
     + "`base64` : Encoding\n"
     + "`countwords` : Counting words\n"
     + "`hex` : Encoding\n"
+    + "`note` : Note for yourself\n"
+    + "`prefix` : Bot's prefix\n"
     + "`dm` : Rixuel only command\n"
     + "-----\n";
 
@@ -145,7 +152,7 @@ function directMessageCommand(arguments, receivedMessage) {
         return
     }
 
-    if ((arguments.length < 2)) {
+    if (arguments.length < 2) {
         receivedMessage.channel.send("Please use `" + prefix + "dm @user <text>`")
         return
     }
@@ -192,10 +199,34 @@ function hexCommand(arguments, receivedMessage) {
     }
 }
 
+function noteCommand(arguments, receivedMessage) {
+    var str = '';
+    let embedDirectMessage = "";
 
-// Get your bot's secret token from:
+    if (arguments.length > 0) {
+        for(var i=0; i<arguments.length; i++) {
+            str += arguments[i];
+            if (i<arguments.length-1){
+                str += ' ';
+            }
+        }
+
+        embedDirectMessage = new Discord.RichEmbed()
+        .setColor('#44DD00')
+        .setTitle('Discord Note')
+        .setDescription(str)
+        .setTimestamp()
+        .setFooter('The human whose name is written in this note shall be discorded.');
+
+        receivedMessage.author.send(embedDirectMessage)
+    } else {
+        receivedMessage.channel.send("Please use `" + prefix + "note <text>`")
+    }
+}
+
+
 // https://discordapp.com/developers/applications/
-// Click on your application -> Bot -> Token -> "Click to Reveal Token"
+// Application -> Bot -> Token
 
-// client.login(auth.token)
+//client.login(auth.token)
 client.login(process.env.BOT_TOKEN)
