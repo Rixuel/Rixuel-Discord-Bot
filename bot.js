@@ -71,7 +71,7 @@ function processCommand(receivedMessage) {
             noteCommand(arguments, receivedMessage)
         break;
         case "ping":
-            receivedMessage.channel.send("`" + (receivedMessage.createdTimestamp - new Date().getTime()) + " ms`");
+            receivedMessage.channel.send("`" + (new Date().getTime() - receivedMessage.createdTimestamp) + " ms`");
         break;
         case "prefix":
             receivedMessage.channel.send("The prefix is: `" + prefix + "`")
