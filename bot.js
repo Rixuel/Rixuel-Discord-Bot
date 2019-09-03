@@ -301,7 +301,7 @@ function rpgdayCommand(arguments, receivedMessage) {
     .addField('Edibles you will obtain', edibles)
     .addField('Lucky Loots', luckyLoots)
     .addField('Unlucky Loots', unluckyLoots)
-    .setFooter('Another great day at ' + guild.name)
+    .setFooter('Have a nice day!')
     .setTimestamp()
     //receivedMessage.channel.send("Status: " + RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)])
     //receivedMessage.channel.send("Sign: " + RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)])
