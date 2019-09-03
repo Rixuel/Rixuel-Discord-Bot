@@ -291,7 +291,7 @@ function rpgdayCommand(arguments, receivedMessage) {
     .setTitle('Your RPG Day today')
     .setDescription("User: " + receivedMessage.author)
     .setThumbnail(receivedMessage.author.avatarURL)
-    .addField('Status', RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)])
+    .addField('Status', RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)], true)
     .addField('Zones', zones, true)
     .addField('Top 3 allies', topAllySigns, true)
     .addField('Top 3 pets', topPets, true)
