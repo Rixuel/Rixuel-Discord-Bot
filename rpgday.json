@@ -1,0 +1,11 @@
+{
+    "status": ["Normal", "Despair", "Melancholic", "Drunk", "Cursed", "Cheerful", "Clever"],
+    "zone": ["Apocalyptic Land", "Hidden Village", "Lakeside", "Mountain", "Plain", "Sky Castle", "Snowy Field", "Valley"],
+    "astrology": ["Aquarius", "Aries", "Cancer", "Capricorn", "Gemini", "Libra", "Leo", "Pisces", "Sagittarius", "Scorpio", "Taurus", "Virgo"],
+    "pet": ["Cat", "Dog", "Dragon", "Duck", "Eagle", "Fox", "Frog", "Gecko", "Goose", "Hamster", "Hawk", "Horse", "Owl", "Wolf"],
+    "arsenal": ["Axe", "Battle Axe", "Claymore", "Dagger", "Fire Blade", "Gun", "Ice Blade", "Katana", "Lance", "Rifle", "Short Sword", "Spear", "Sword"],
+    "skill": ["Cursed Hex", "Dark Spear", "Fire Ball", "Heal", "Holy Blast", "Holy Spear", "Ice Spike", "Lightning Strike", "Magic Shield", "Regeneration", "Teleportation", "Wind Cutter"],
+    "enemy": ["Bear", "Corrupted Dog", "Corrupted Archangel", "Demon", "Demon Lord", "Demon Minion", "Doppelganger", "Evil Lewd Nun", "Evil Lewd Nurse", "Evil Spirit", "Fire Bird", "Ghost", "Hydra", "Lion", "Manticore", "Man-Eater Squirrel", "Phantom", "Revenant", "Shark", "Ultimate Deadly Duck", "Zombie", "Zombie Soldier"],
+    "edible": ["Apple", "Banana", "Beer", "Blueberry", "Burger", "Cheese", "Chocolate", "Durian", "Grapple Fruit", "Green Tea", "HP Potion", "Juice", "Liquor", "Mango", "Meat", "MP Potion", "Orange", "Pineapple", "Raspberry", "Strawberry", "Tea", "Water", "Wine"],
+    "loot": ["Apple", "Book", "Bronze", "Clothes", "Coin", "Console", "Copper", "Cross", "Dice", "Gold", "HP Potion", "Iron", "Manga", "Mithril", "MP Potion", "Pen", "Pencil", "Ruler", "Silver", "Sword", "Tea Box", "Watch"]
+}
