@@ -8,7 +8,9 @@ client.on('ready', () => {
     console.log("Connected as " + client.user.tag)
 
     // Set bot status to: "Playing with JavaScript"
-    client.user.setActivity("Rixuel", {type: "LISTENING"})
+    client.user.setActivity("Rixuel", {
+        type: "LISTENING"
+    })
 
     // List servers the bot is connected to
     console.log("Servers:")
@@ -36,83 +38,83 @@ function processCommand(receivedMessage) {
     // console.log("Command received: " + primaryCommand)
     // console.log("Arguments: " + arguments) // There may not be any arguments
 
-    switch(primaryCommand) {
+    switch (primaryCommand) {
         case "help":
             helpCommand(arguments, receivedMessage)
-        break;
+            break;
         case "alterna":
             const webAttachment = new Discord.Attachment('https://alternaland.github.io/img/alternalogo.png')
             receivedMessage.channel.send(webAttachment)
-        break;
+            break;
         case "avatar":
             const userForAvatar = receivedMessage.mentions.users.first() || receivedMessage.author;
 
-            if (arguments.length > 1){
+            if (arguments.length > 1) {
                 return
             }
-            if (userForAvatar!=receivedMessage.mentions.users.first() && (arguments.length == 1)) {
+            if (userForAvatar != receivedMessage.mentions.users.first() && (arguments.length == 1)) {
                 return
             }
             receivedMessage.channel.send("User: " + userForAvatar)
             receivedMessage.channel.send(userForAvatar.avatarURL)
-        break;
+            break;
         case "base64":
             base64Command(arguments, receivedMessage)
-        break;
+            break;
         case "countwords":
             countwordsCommand(arguments, receivedMessage)
-        break;
+            break;
         case "hex":
             hexCommand(arguments, receivedMessage)
-        break;
+            break;
         case "hi":
             receivedMessage.channel.send("Hiya ^^")
-        break;
+            break;
         case "note":
             noteCommand(arguments, receivedMessage)
-        break;
+            break;
         case "ping":
             receivedMessage.channel.send("`" + (new Date().getTime() - receivedMessage.createdTimestamp) + " ms`");
-        break;
+            break;
         case "prefix":
             receivedMessage.channel.send("The prefix is: `" + prefix + "`")
-        break;
+            break;
         case "rixuel":
             receivedMessage.channel.send("Our lord and savior :3")
-        break;
+            break;
         case "rpgday":
         case "rd":
             rpgdayCommand(arguments, receivedMessage)
-        break;
+            break;
         case "dm":
             directMessageCommand(arguments, receivedMessage)
-        break;
+            break;
         default:
-            receivedMessage.channel.send("I don't understand the command. Try `"+prefix+"help`")
+            receivedMessage.channel.send("I don't understand the command. Try `" + prefix + "help`")
     }
 }
 
 function helpCommand(arguments, receivedMessage) {
     var helpMessage = "";
 
-    helpMessage = "Prefix : " + prefix + "\n"
-    + "-----\n"
-    + "`avatar` : Get user avatar\n"
-    + "`base64` : Encoding\n"
-    + "`countwords` : Counting words\n"
-    + "`hex` : Encoding\n"
-    + "`note` : Note for yourself\n"
-    + "`ping` : Pong!\n"
-    + "`prefix` : Bot's prefix\n"
-    + "`rpgday`, `rd` : Check your RPG Day\n"
-    + "`dm` : Rixuel only command\n"
-    + "-----\n";
+    helpMessage = "Prefix : " + prefix + "\n" +
+        "-----\n" +
+        "`avatar` : Get user avatar\n" +
+        "`base64` : Encoding\n" +
+        "`countwords` : Counting words\n" +
+        "`hex` : Encoding\n" +
+        "`note` : Note for yourself\n" +
+        "`ping` : Pong!\n" +
+        "`prefix` : Bot's prefix\n" +
+        "`rpgday`, `rd` : Check your RPG Day\n" +
+        "`dm` : Rixuel only command\n" +
+        "-----\n";
 
     embedHelpMessage = new Discord.RichEmbed()
-    .setColor('#44DD00')
-	.setTitle('List of Commands')
-	.setDescription(helpMessage)
-	.setTimestamp()
+        .setColor('#44DD00')
+        .setTitle('List of Commands')
+        .setDescription(helpMessage)
+        .setTimestamp()
 
     receivedMessage.channel.send(embedHelpMessage)
 }
@@ -120,17 +122,17 @@ function helpCommand(arguments, receivedMessage) {
 function base64Command(arguments, receivedMessage) {
     var str = '';
     if (arguments[0] == "encode") {
-        for(var i=1; i<arguments.length; i++) {
+        for (var i = 1; i < arguments.length; i++) {
             str += arguments[i];
-            if (i<arguments.length-1){
+            if (i < arguments.length - 1) {
                 str += ' ';
             }
         }
         receivedMessage.channel.send(Buffer.from(str).toString('base64'))
     } else if (arguments[0] == "decode") {
-        for(var i=1; i<arguments.length; i++) {
+        for (var i = 1; i < arguments.length; i++) {
             str += arguments[i];
-            if (i<arguments.length-1){
+            if (i < arguments.length - 1) {
                 str += ' ';
             }
         }
@@ -167,20 +169,20 @@ function directMessageCommand(arguments, receivedMessage) {
         return
     }
 
-    for(var i=1; i<arguments.length; i++) {
+    for (var i = 1; i < arguments.length; i++) {
         str += arguments[i];
-        if (i<arguments.length-1){
+        if (i < arguments.length - 1) {
             str += ' ';
         }
     }
 
     embedDirectMessage = new Discord.RichEmbed()
-    .setColor('#CCCC00')
-    .setDescription(str);
+        .setColor('#CCCC00')
+        .setDescription(str);
 
     ///console.log("str: " + str)
 
-    client.users.get(getSpecificUser.id).send(embedDirectMessage).catch(function () {
+    client.users.get(getSpecificUser.id).send(embedDirectMessage).catch(function() {
         return
     });
     receivedMessage.channel.send("Message delivered ;)")
@@ -189,17 +191,17 @@ function directMessageCommand(arguments, receivedMessage) {
 function hexCommand(arguments, receivedMessage) {
     var str = '';
     if (arguments[0] == "encode") {
-        for(var i=1; i<arguments.length; i++) {
+        for (var i = 1; i < arguments.length; i++) {
             str += arguments[i];
-            if (i<arguments.length-1){
+            if (i < arguments.length - 1) {
                 str += ' ';
             }
         }
         receivedMessage.channel.send(Buffer.from(str).toString('hex'))
     } else if (arguments[0] == "decode") {
-        for(var i=1; i<arguments.length; i++) {
+        for (var i = 1; i < arguments.length; i++) {
             str += arguments[i];
-            if (i<arguments.length-1){
+            if (i < arguments.length - 1) {
                 str += ' ';
             }
         }
@@ -214,19 +216,19 @@ function noteCommand(arguments, receivedMessage) {
     let embedDirectMessage = "";
 
     if (arguments.length > 0) {
-        for(var i=0; i<arguments.length; i++) {
+        for (var i = 0; i < arguments.length; i++) {
             str += arguments[i];
-            if (i<arguments.length-1){
+            if (i < arguments.length - 1) {
                 str += ' ';
             }
         }
 
         embedDirectMessage = new Discord.RichEmbed()
-        .setColor('#44DD00')
-        .setTitle('Discord Note')
-        .setDescription(str)
-        .setTimestamp()
-        .setFooter('The human whose name is written in this note shall be discorded.');
+            .setColor('#44DD00')
+            .setTitle('Discord Note')
+            .setDescription(str)
+            .setTimestamp()
+            .setFooter('The human whose name is written in this note shall be discorded.');
 
         receivedMessage.author.send(embedDirectMessage)
     } else {
@@ -237,72 +239,72 @@ function noteCommand(arguments, receivedMessage) {
 function rpgdayCommand(arguments, receivedMessage) {
     let embedRPGDayMessage = "";
 
-    let zones = RPGDay.zone[Math.floor(Math.random() * RPGDay.zone.length)] + "\n"
-    + RPGDay.zone[Math.floor(Math.random() * RPGDay.zone.length)] + "\n"
-    + RPGDay.zone[Math.floor(Math.random() * RPGDay.zone.length)] + "\n";
+    let zones = RPGDay.zone[Math.floor(Math.random() * RPGDay.zone.length)] + "\n" +
+        RPGDay.zone[Math.floor(Math.random() * RPGDay.zone.length)] + "\n" +
+        RPGDay.zone[Math.floor(Math.random() * RPGDay.zone.length)] + "\n";
 
-    let topAllySigns = RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)] + "\n"
-    + RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)] + "\n"
-    + RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)] + "\n";
+    let topAllySigns = RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)] + "\n" +
+        RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)] + "\n" +
+        RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)] + "\n";
 
-    let topPets = RPGDay.pet[Math.floor(Math.random() * RPGDay.pet.length)] + "\n"
-    + RPGDay.pet[Math.floor(Math.random() * RPGDay.pet.length)] + "\n"
-    + RPGDay.pet[Math.floor(Math.random() * RPGDay.pet.length)] + "\n";
+    let topPets = RPGDay.pet[Math.floor(Math.random() * RPGDay.pet.length)] + "\n" +
+        RPGDay.pet[Math.floor(Math.random() * RPGDay.pet.length)] + "\n" +
+        RPGDay.pet[Math.floor(Math.random() * RPGDay.pet.length)] + "\n";
 
-    let arsenal = RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + " | "
-    + RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + " | "
-    + RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + " | "
-    + RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + " | "
-    + RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)];
+    let arsenal = RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + " | " +
+        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + " | " +
+        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + " | " +
+        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + " | " +
+        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)];
 
-    let skills = RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + " | "
-    + RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + " | "
-    + RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + " | "
-    + RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + " | "
-    + RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)];
+    let skills = RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + " | " +
+        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + " | " +
+        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + " | " +
+        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + " | " +
+        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)];
 
-    let enemies = RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + " | "
-    + RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + " | "
-    + RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + " | "
-    + RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + " | "
-    + RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)];
+    let enemies = RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + " | " +
+        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + " | " +
+        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + " | " +
+        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + " | " +
+        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)];
 
-    let edibles = RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " | "
-    + RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " | "
-    + RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " | "
-    + RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " | "
-    + RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)];
+    let edibles = RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " | " +
+        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " | " +
+        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " | " +
+        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " | " +
+        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)];
 
-    let luckyLoots = RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | "
-    + RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | "
-    + RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | "
-    + RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | "
-    + RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)];
+    let luckyLoots = RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)];
 
-    let unluckyLoots = RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | "
-    + RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | "
-    + RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | "
-    + RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | "
-    + RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)];
+    let unluckyLoots = RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)];
 
 
     embedRPGDayMessage = new Discord.RichEmbed()
-    .setColor('#44DD00')
-    .setTitle('Your RPG Day today')
-    .setDescription("User: " + receivedMessage.author)
-    .setThumbnail(receivedMessage.author.avatarURL)
-    .addField('Status', RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)], true)
-    .addField('Zones', zones, true)
-    .addField('Top 3 allies', topAllySigns, true)
-    .addField('Top 3 pets', topPets, true)
-    .addField('Arsenal', arsenal)
-    .addField('Skills', skills)
-    .addField('Enemies you will confront', enemies)
-    .addField('Edibles you will obtain', edibles)
-    .addField('Lucky Loots', luckyLoots)
-    .addField('Unlucky Loots', unluckyLoots)
-    .setFooter('Have a nice day!')
-    .setTimestamp()
+        .setColor('#44DD00')
+        .setTitle('Your RPG Day today')
+        .setDescription("User: " + receivedMessage.author)
+        .setThumbnail(receivedMessage.author.avatarURL)
+        .addField('Status', RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)], true)
+        .addField('Zones', zones, true)
+        .addField('Top 3 allies', topAllySigns, true)
+        .addField('Top 3 pets', topPets, true)
+        .addField('Arsenal', arsenal)
+        .addField('Skills', skills)
+        .addField('Enemies you will confront', enemies)
+        .addField('Edibles you will obtain', edibles)
+        .addField('Lucky Loots', luckyLoots)
+        .addField('Unlucky Loots', unluckyLoots)
+        .setFooter('Have a nice day!')
+        .setTimestamp()
     //receivedMessage.channel.send("Status: " + RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)])
     //receivedMessage.channel.send("Sign: " + RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)])
     receivedMessage.channel.send(embedRPGDayMessage)
