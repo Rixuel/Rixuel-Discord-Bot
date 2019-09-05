@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+const cooldown = new Set();
 var RPGDay = require('./rpgday.json');
 //var auth = require('./auth.json');
 var prefix = "c!";
@@ -84,10 +85,24 @@ function processCommand(receivedMessage) {
             break;
         case "rpgday":
         case "rd":
-            rpgdayCommand(arguments, receivedMessage)
+            if (cooldown.has(receivedMessage.author.id)) {
+                receivedMessage.channel.send("Wait 1 hour before getting typing this again, " + receivedMessage.author);
+            } else {
+                rpgdayCommand(arguments, receivedMessage);
+
+                // Adds the user to the set so that they can't talk
+                cooldown.add(receivedMessage.author.id);
+                setTimeout(() => {
+                    // Removes the user from the set after a minute
+                    cooldown.delete(receivedMessage.author.id);
+                }, 3600000);
+            }
             break;
         case "dm":
             directMessageCommand(arguments, receivedMessage)
+            break;
+        case "c":
+            receivedMessage.channel.send("Test Message")
             break;
         default:
             receivedMessage.channel.send("I don't understand the command. Try `" + prefix + "help`")
