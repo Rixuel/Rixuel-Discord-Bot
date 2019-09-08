@@ -5,7 +5,7 @@ const cooldown = new Set();
 var AdminLord = require("./commands/adminlord.js");
 var Alias = require("./commands/alias.js");
 var CountWords = require("./commands/countwords.js");
-var Crypto = require("./commands/crypto.js");
+var Cryptode = require("./commands/cryptode.js");
 var Note = require("./commands/note.js");
 var RPGday = require("./commands/rpgday.js");
 var ServerInfo = require("./commands/serverinfo.js");
@@ -71,14 +71,14 @@ function processCommand(receivedMessage) {
             receivedMessage.channel.send(userForAvatar.avatarURL)
             break;
         case "base64":
-            Crypto.base64(prefix, arguments, receivedMessage)
+            Cryptode.base64(prefix, arguments, receivedMessage)
             break;
         case "countwords":
         case "cw":
             CountWords.countwords(arguments, receivedMessage)
             break;
         case "hex":
-            Crypto.hex(prefix, arguments, receivedMessage)
+            Cryptode.hex(prefix, arguments, receivedMessage)
             break;
         case "hi":
             receivedMessage.channel.send("Hiya ^^")
