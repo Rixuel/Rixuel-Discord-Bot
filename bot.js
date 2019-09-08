@@ -168,6 +168,7 @@ function helpCommand(arguments, receivedMessage) {
         "`ping` : Pong!\n" +
         "`prefix` : Bot's prefix\n" +
         "`rpgday`, `rd` : Check your RPG Day\n" +
+        "`serverinfo` : Server information\n" +
         "`dm` : Rixuel only command\n" +
         "-----\n";
 
