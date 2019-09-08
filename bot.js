@@ -1,12 +1,12 @@
-const Discord = require('discord.js')
+const Discord = require("discord.js")
 const client = new Discord.Client()
 const cooldown = new Set();
-var Alias = require('./alias.json');
-var RPGDay = require('./rpgday.json');
-//var auth = require('./auth.json');
+var Alias = require("./alias.json");
+var RPGDay = require("./rpgday.json");
+var auth = require("./auth.json");
 var prefix = "c!";
 
-client.on('ready', () => {
+client.on("ready", () => {
     console.log("Connected as " + client.user.tag)
 
     // Set bot status to: "Playing with JavaScript"
@@ -21,7 +21,7 @@ client.on('ready', () => {
     })
 })
 
-client.on('message', (receivedMessage) => {
+client.on("message", (receivedMessage) => {
     if (receivedMessage.author == client.user) { // Prevent bot from responding to its own messages
         return
     }
@@ -49,7 +49,7 @@ function processCommand(receivedMessage) {
             aliasCommand(arguments, receivedMessage)
             break;
         case "alterna":
-            const webAttachment = new Discord.Attachment('https://alternaland.github.io/img/alternalogo.png')
+            const webAttachment = new Discord.Attachment("https://alternaland.github.io/img/alternalogo.png")
             receivedMessage.channel.send(webAttachment)
             break;
         case "avatar":
@@ -132,11 +132,11 @@ function helpCommand(arguments, receivedMessage) {
         "-----\n";
 
     embedHelpMessage = new Discord.RichEmbed()
-        .setColor('#DFDAD0')
-        .setTitle('List of Commands')
+        .setColor("#DFDAD0")
+        .setTitle("List of Commands")
         .setDescription(helpMessage)
         .setTimestamp()
-        .setFooter('Bot made by Rixuel');
+        .setFooter("Bot made by Rixuel");
 
     receivedMessage.channel.send(embedHelpMessage)
 }
@@ -208,23 +208,23 @@ function aliasCommand(arguments, receivedMessage) {
 }
 
 function base64Command(arguments, receivedMessage) {
-    var str = '';
+    var str = "";
     if (arguments[0] == "encode") {
         for (var i = 1; i < arguments.length; i++) {
             str += arguments[i];
             if (i < arguments.length - 1) {
-                str += ' ';
+                str += " ";
             }
         }
-        receivedMessage.channel.send(Buffer.from(str).toString('base64'))
+        receivedMessage.channel.send(Buffer.from(str).toString("base64"))
     } else if (arguments[0] == "decode") {
         for (var i = 1; i < arguments.length; i++) {
             str += arguments[i];
             if (i < arguments.length - 1) {
-                str += ' ';
+                str += " ";
             }
         }
-        receivedMessage.channel.send(Buffer.from(str, 'base64').toString('utf-8'))
+        receivedMessage.channel.send(Buffer.from(str, "base64").toString("utf-8"))
     } else {
         receivedMessage.channel.send("Please use `" + prefix + "base64 encode <text>` or `" + prefix + "base64 decode <text>`")
     }
@@ -232,7 +232,7 @@ function base64Command(arguments, receivedMessage) {
 
 function countwordsCommand(arguments, receivedMessage) {
     if (arguments.length < 1) {
-        receivedMessage.channel.send('I can\'t count nothing, silly! <_<')
+        receivedMessage.channel.send("I can\'t count nothing, silly! <_<")
     } else {
         receivedMessage.channel.send(arguments.length + " words")
     }
@@ -260,12 +260,12 @@ function directMessageCommand(arguments, receivedMessage) {
     for (var i = 1; i < arguments.length; i++) {
         str += arguments[i];
         if (i < arguments.length - 1) {
-            str += ' ';
+            str += " ";
         }
     }
 
     embedDirectMessage = new Discord.RichEmbed()
-        .setColor('#CCCC00')
+        .setColor("#CCCC00")
         .setDescription(str);
 
     ///console.log("str: " + str)
@@ -277,46 +277,46 @@ function directMessageCommand(arguments, receivedMessage) {
 }
 
 function hexCommand(arguments, receivedMessage) {
-    var str = '';
+    var str = "";
     if (arguments[0] == "encode") {
         for (var i = 1; i < arguments.length; i++) {
             str += arguments[i];
             if (i < arguments.length - 1) {
-                str += ' ';
+                str += " ";
             }
         }
-        receivedMessage.channel.send(Buffer.from(str).toString('hex'))
+        receivedMessage.channel.send(Buffer.from(str).toString("hex"))
     } else if (arguments[0] == "decode") {
         for (var i = 1; i < arguments.length; i++) {
             str += arguments[i];
             if (i < arguments.length - 1) {
-                str += ' ';
+                str += " ";
             }
         }
-        receivedMessage.channel.send(Buffer.from(str, 'hex').toString('utf-8'))
+        receivedMessage.channel.send(Buffer.from(str, "hex").toString("utf-8"))
     } else {
         receivedMessage.channel.send("Please use `" + prefix + "hex encode <text>` or `" + prefix + "hex decode <text>`")
     }
 }
 
 function noteCommand(arguments, receivedMessage) {
-    var str = '';
+    var str = "";
     let embedDirectMessage = "";
 
     if (arguments.length > 0) {
         for (var i = 0; i < arguments.length; i++) {
             str += arguments[i];
             if (i < arguments.length - 1) {
-                str += ' ';
+                str += " ";
             }
         }
 
         embedDirectMessage = new Discord.RichEmbed()
-            .setColor('#44DD00')
-            .setTitle('Discord Note')
+            .setColor("#44DD00")
+            .setTitle("Discord Note")
             .setDescription(str)
             .setTimestamp()
-            .setFooter('The human whose name is written in this note shall be discorded.');
+            .setFooter("The human whose name is written in this note shall be discorded.");
 
         receivedMessage.author.send(embedDirectMessage)
     } else {
@@ -377,21 +377,21 @@ function rpgdayCommand(arguments, receivedMessage) {
 
 
     embedRPGDayMessage = new Discord.RichEmbed()
-        .setColor('#44DD00')
-        .setTitle('Your RPG Day today')
+        .setColor("#44DD00")
+        .setTitle("Your RPG Day today")
         .setDescription("User: " + receivedMessage.author)
         .setThumbnail(receivedMessage.author.avatarURL)
-        .addField('Status', RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)], true)
-        .addField('Zones', zones, true)
-        .addField('Top 3 allies', topAllySigns, true)
-        .addField('Top 3 pets', topPets, true)
-        .addField('Arsenal', arsenal)
-        .addField('Skills', skills)
-        .addField('Enemies you will confront', enemies)
-        .addField('Edibles you will obtain', edibles)
-        .addField('Lucky Loots', luckyLoots)
-        .addField('Unlucky Loots', unluckyLoots)
-        .setFooter('Have a nice day!')
+        .addField("Status", RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)], true)
+        .addField("Zones", zones, true)
+        .addField("Top 3 allies", topAllySigns, true)
+        .addField("Top 3 pets", topPets, true)
+        .addField("Arsenal", arsenal)
+        .addField("Skills", skills)
+        .addField("Enemies you will confront", enemies)
+        .addField("Edibles you will obtain", edibles)
+        .addField("Lucky Loots", luckyLoots)
+        .addField("Unlucky Loots", unluckyLoots)
+        .setFooter("Have a nice day!")
         .setTimestamp()
     //receivedMessage.channel.send("Status: " + RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)])
     //receivedMessage.channel.send("Sign: " + RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)])
@@ -401,5 +401,5 @@ function rpgdayCommand(arguments, receivedMessage) {
 // https://discordapp.com/developers/applications/
 // Application -> Bot -> Token
 
-//client.login(auth.token)
-client.login(process.env.BOT_TOKEN)
+client.login(auth.token)
+//client.login(process.env.BOT_TOKEN)
