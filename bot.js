@@ -7,6 +7,7 @@ var Alias = require("./commands/alias.js");
 var CountWords = require("./commands/countwords.js");
 var Cryptode = require("./commands/cryptode.js");
 var Note = require("./commands/note.js");
+var Roll = require("./commands/roll.js");
 var RPGday = require("./commands/rpgday.js");
 var ServerInfo = require("./commands/serverinfo.js");
 var tryCMD = require("./commands/try.js");
@@ -95,6 +96,9 @@ function processCommand(receivedMessage) {
         case "rixuel":
             receivedMessage.channel.send("Our lord and savior :3")
             break;
+        case "roll":
+            Roll.roll(prefix, arguments, receivedMessage)
+            break;
         case "rpgday":
         case "rd":
             if (cooldown.has(receivedMessage.author.id)) {
@@ -110,11 +114,14 @@ function processCommand(receivedMessage) {
                 }, 3600000);
             }
             break;
+        case "serverinfo":
+            ServerInfo.serverinfo(arguments, receivedMessage)
+            break;
         case "dm":
             AdminLord.directmessage(prefix, arguments, receivedMessage)
             break;
-        case "serverinfo":
-            ServerInfo.serverinfo(arguments, receivedMessage)
+        case "getid":
+            AdminLord.getid(prefix, arguments, receivedMessage)
             break;
         case "c":
             tryCMD.tryCommands(arguments, receivedMessage)
@@ -125,27 +132,29 @@ function processCommand(receivedMessage) {
 }
 
 function help(arguments, receivedMessage) {
-    var helpMessage = "";
-
-    helpMessage = "Prefix : " + prefix + "\n" +
-        "-----\n" +
-        "`alias`, `ag` : Alias name generator\n" +
-        "`avatar` : Get user avatar\n" +
-        "`base64` : Encoding\n" +
-        "`countwords`, `cw` : Counting words\n" +
-        "`hex` : Encoding\n" +
-        "`note` : Note for yourself\n" +
-        "`ping` : Pong!\n" +
-        "`prefix` : Bot's prefix\n" +
-        "`rpgday`, `rd` : Check your RPG Day\n" +
-        "`serverinfo` : Server information\n" +
-        "`dm` : Rixuel only command\n" +
-        "-----\n";
-
-    embedHelpMessage = new Discord.RichEmbed()
+    let embedHelpMessage = new Discord.RichEmbed()
         .setColor("#DFDAD0")
         .setTitle("List of Commands")
-        .setDescription(helpMessage)
+        .setDescription("Prefix : " + prefix)
+        .addField("Basic",
+        "`avatar` : Get user avatar\n" +
+        "`ping` : Pong!\n" +
+        "`prefix` : Bot's prefix\n" +
+        "`serverinfo` : Server information\n"
+        )
+        .addField("Encoding",
+        "`base64` : Encoding\n" +
+        "`hex` : Encoding\n"
+        )
+        .addField("Fun",
+        "`alias`, `ag` : Alias name generator\n" +
+        "`roll` : Roll a dice or between a range of numbers\n" +
+        "`rpgday`, `rd` : Check your RPG Day\n"
+        )
+        .addField("Utility",
+        "`countwords`, `cw` : Counting words\n" +
+        "`note` : Note for yourself\n"
+        )
         .setTimestamp()
         .setFooter("Bot made by Rixuel");
 

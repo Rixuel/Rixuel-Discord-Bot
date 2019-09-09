@@ -1,14 +1,16 @@
 const Discord = require("discord.js")
 
 function directmessage(prefix, arguments, receivedMessage) {
-    const getSpecificUser = receivedMessage.mentions.users.first() || receivedMessage.author;
+    const getSpecificUser = receivedMessage.mentions.users.first(); // || receivedMessage.author;
     var embedDirectMessage = "";
     var str = "";
+
+    if (!receivedMessage.mentions.users.first()) return;
 
     console.log("receivedMessage.author : " + receivedMessage.author)
     console.log("getSpecificUser: " + getSpecificUser + " = " + arguments[0])
     console.log("getSpecificUser.id: " + getSpecificUser.id)
-
+    
     if (receivedMessage.author.id != "216440326796214274") {
         receivedMessage.channel.send("Only Rixuel can give me this command >:D")
         return
@@ -42,4 +44,29 @@ function directmessage(prefix, arguments, receivedMessage) {
     receivedMessage.channel.send("Message delivered ;)")
 }
 
+function getid(prefix, arguments, receivedMessage) {
+    const getSpecificUser = receivedMessage.mentions.users.first();
+    let privateMessage = "";
+
+    if (!receivedMessage.mentions.users.first()) return;
+
+    if (receivedMessage.author.id != "216440326796214274") {
+        receivedMessage.channel.send("Only Rixuel can give me this command >:D")
+        return
+    }
+
+    if (arguments.length != 1) {
+        receivedMessage.channel.send("Please use `" + prefix + "getid @user`")
+        return
+    }
+
+    privateMessage = getSpecificUser + " ID is: " + getSpecificUser.id;
+
+    receivedMessage.author.send(privateMessage).catch(function() {
+        return
+    });
+    receivedMessage.channel.send("You got it")
+}
+
 module.exports.directmessage = directmessage;
+module.exports.getid = getid;
