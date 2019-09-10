@@ -6,6 +6,7 @@ var AdminLord = require("./commands/adminlord.js");
 var Alias = require("./commands/alias.js");
 var CountWords = require("./commands/countwords.js");
 var Cryptode = require("./commands/cryptode.js");
+var Drunk = require("./commands/drunk.js");
 var Note = require("./commands/note.js");
 var Roll = require("./commands/roll.js");
 var RPGday = require("./commands/rpgday.js");
@@ -79,7 +80,7 @@ function processCommand(receivedMessage) {
             CountWords.countwords(arguments, receivedMessage)
             break;
         case "drunk":
-            receivedMessage.channel.send("<Drunk message here>")
+            Drunk.drunk(arguments, receivedMessage)
             break;
         case "galatea":
             receivedMessage.channel.send("Yep, that's me")
@@ -157,6 +158,7 @@ function help(arguments, receivedMessage) {
         )
         .addField("Fun",
         "`alias`, `ag` : Alias name generator\n" +
+        "`drunk` : Bot is drunk and isn't making sense\n" +
         "`roll` : Roll a dice or between a range of numbers\n" +
         "`rpgday`, `rd` : Check your RPG Day\n"
         )

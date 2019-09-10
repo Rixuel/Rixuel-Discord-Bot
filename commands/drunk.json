@@ -1,0 +1,76 @@
+{
+    "adjective": [
+        "bad",
+        "good",
+        "pretty",
+        "ugly"
+    ],
+    "determiner": [
+        "her",
+        "his",
+        "its",
+        "my",
+        "our",
+        "that",
+        "the",
+        "their",
+        "these",
+        "this",
+        "those"
+    ],
+    "noun": [
+        "apple",
+        "book",
+        "boy",
+        "cake",
+        "cat",
+        "car",
+        "cup",
+        "dad",
+        "dress",
+        "father",
+        "dog",
+        "duck",
+        "girl",
+        "hat",
+        "house",
+        "lake",
+        "man",
+        "mom",
+        "mother",
+        "pant",
+        "pie",
+        "whip",
+        "woman"
+    ],
+    "subject": [
+        "he",
+        "i",
+        "it",
+        "she",
+        "they",
+        "we",
+        "you"
+    ],
+    "verb": [
+        "dance",
+        "eat",
+        "go",
+        "has",
+        "illustrates",
+        "is",
+        "look",
+        "observe",
+        "sleep",
+        "touch",
+        "walk",
+        "was",
+        "watch"
+    ],
+    "verbs": [
+        "have received",
+        "is being",
+        "is eating",
+        "is going"
+    ]
+}
