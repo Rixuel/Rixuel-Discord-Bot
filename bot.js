@@ -62,14 +62,14 @@ function processCommand(receivedMessage) {
         case "avatar":
             const userForAvatar = receivedMessage.mentions.users.first() || receivedMessage.author;
 
-            if (arguments.length > 1) {
+            if ((arguments.length > 1) || (!receivedMessage.mentions.users.first() && (arguments.length == 1))) {
                 return
             }
-            if (userForAvatar != receivedMessage.mentions.users.first() && (arguments.length == 1)) {
-                return
-            }
-            receivedMessage.channel.send("User: " + userForAvatar)
-            receivedMessage.channel.send(userForAvatar.avatarURL)
+
+            receivedMessage.channel.send(
+                "Avatar of " + userForAvatar + "\n" +
+                userForAvatar.avatarURL
+            )
             break;
         case "base64":
             Cryptode.base64(prefix, arguments, receivedMessage)
@@ -77,6 +77,12 @@ function processCommand(receivedMessage) {
         case "countwords":
         case "cw":
             CountWords.countwords(arguments, receivedMessage)
+            break;
+        case "drunk":
+            receivedMessage.channel.send("<Drunk message here>")
+            break;
+        case "galatea":
+            receivedMessage.channel.send("Yep, that's me")
             break;
         case "hex":
             Cryptode.hex(prefix, arguments, receivedMessage)
@@ -116,6 +122,9 @@ function processCommand(receivedMessage) {
             break;
         case "serverinfo":
             ServerInfo.serverinfo(arguments, receivedMessage)
+            break;
+        case "troll":
+            receivedMessage.channel.send("<Troll message here>")
             break;
         case "dm":
             AdminLord.directmessage(prefix, arguments, receivedMessage)

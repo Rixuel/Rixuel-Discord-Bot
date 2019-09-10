@@ -10,7 +10,7 @@ function directmessage(prefix, arguments, receivedMessage) {
     console.log("receivedMessage.author : " + receivedMessage.author)
     console.log("getSpecificUser: " + getSpecificUser + " = " + arguments[0])
     console.log("getSpecificUser.id: " + getSpecificUser.id)
-    
+
     if (receivedMessage.author.id != "216440326796214274") {
         receivedMessage.channel.send("Only Rixuel can give me this command >:D")
         return
@@ -60,7 +60,7 @@ function getid(prefix, arguments, receivedMessage) {
         return
     }
 
-    privateMessage = getSpecificUser + " ID is: " + getSpecificUser.id;
+    privateMessage = "**" + getSpecificUser.tag + "** ID is: `" + getSpecificUser.id + "`";
 
     receivedMessage.author.send(privateMessage).catch(function() {
         return
