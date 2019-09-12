@@ -10,10 +10,12 @@
             "El",
             "Em",
             "Fel",
+            "Flo",
             "Iv",
             "Jul",
             "Kass",
             "Ki",
+            "Lu",
             "So",
             "Tere",
             "Vivi"
@@ -25,6 +27,8 @@
             "andria",
             "ane",
             "cia",
+            "cile",
+            "ella",
             "elle",
             "fia",
             "ia",
@@ -88,14 +92,17 @@
         ]
     },
     "title": [
+        "Agent",
         "Angel",
         "Berserker",
         "Captain",
         "Conqueror",
         "Demon",
         "Doctor",
+        "Dragon Slayer",
         "Holy",
         "Hunter",
+        "Great",
         "Guardian",
         "Killer",
         "Knight",
@@ -105,10 +112,14 @@
         "Overlord",
         "Rascal",
         "Renegade",
+        "Saint",
         "Sinner",
         "Shadow",
         "Shadowlord",
         "Slayer",
-        "Thug"
+        "Thug",
+        "Vampire Slayer",
+        "Warrior",
+        "Wizard"
     ]
 }
