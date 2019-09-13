@@ -137,6 +137,7 @@
         "Wyvern"
    ],
    "arsenal":[
+        "AK-47",
         "Axe",
         "Battle Axe",
         "Butter Knife",
@@ -146,6 +147,7 @@
         "Fire Blade",
         "Fire Lance",
         "Fork",
+        "Gaunlets",
         "Gun",
         "Hammer",
         "Ice Blade",
@@ -156,6 +158,7 @@
         "Knife",
         "Lance",
         "Mace",
+        "M16",
         "Pistol",
         "Rifle",
         "Scimitar",
@@ -164,6 +167,9 @@
         "Spoon",
         "Stiletto",
         "Sword",
+        "Tommy Gun",
+        "Trident",
+        "Whip",
         "Zweihander"
    ],
    "skill":[
@@ -172,7 +178,7 @@
         "Dark Spear",
         "Fire Ball",
         "Fire Wall",
-        "Gaunlets",
+        "Glacial Spikes",
         "Heal",
         "Holy Blast",
         "Holy Spear",
@@ -183,6 +189,7 @@
         "Mana Sword",
         "Necromancy",
         "Regeneration",
+        "Root",
         "Shapeshifting",
         "Teleportation",
         "Wind Cutter"
