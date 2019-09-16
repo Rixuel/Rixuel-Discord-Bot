@@ -30,23 +30,27 @@ client.on("ready", () => {
 })
 
 client.on("message", (receivedMessage) => {
+    const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
+    const thisPrefix = receivedMessage.content.match(prefixMention) ? receivedMessage.content.match(prefixMention)[0] : prefix;
+
     if (receivedMessage.author == client.user) { // Prevent bot from responding to its own messages
         return
     }
 
-    if (receivedMessage.content.startsWith(prefix)) {
-        processCommand(receivedMessage)
+    if (receivedMessage.content.startsWith(thisPrefix)) {
+        processCommand(receivedMessage, thisPrefix)
     }
 })
 
-function processCommand(receivedMessage) {
-    let fullCommand = receivedMessage.content.substr(2) // Remove the leading exclamation mark
+function processCommand(receivedMessage, thisPrefix) {
+    let fullCommand = receivedMessage.content.substr(thisPrefix.length) // Remove the leading exclamation mark
     let splitCommand = fullCommand.split(" ") // Split the message up in to pieces for each space
     let primaryCommand = splitCommand[0] // The first word directly after the exclamation is the command
     let arguments = splitCommand.slice(1) // All other words are arguments/parameters/options for the command
 
-    // console.log("Command received: " + primaryCommand)
-    // console.log("Arguments: " + arguments) // There may not be any arguments
+    //console.log("thisPrefix.length: " + thisPrefix.length)
+    //console.log("Command received: " + primaryCommand)
+    //console.log("Arguments: " + arguments) // There may not be any arguments
 
     switch (primaryCommand) {
         case "help":
