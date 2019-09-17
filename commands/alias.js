@@ -11,32 +11,35 @@ function alias(prefix, arguments, receivedMessage) {
     "`" + prefix + "ag male`\n" +
     "`" + prefix + "ag f`\n";
 
-    let f_prefixArray = Alias.female.prefix;
+    let f_PrefixArray = Alias.female.prefix;
     let f_SuffixArray = Alias.female.suffix;
-    let m_prefixArray = Alias.male.prefix;
+    let f_TitleArray = Alias.female.title;
+    let m_PrefixArray = Alias.male.prefix;
     let m_SuffixArray = Alias.male.suffix;
-    let titleArray = Alias.title;
+    let m_TitleArray = Alias.male.title;
 
     let f_PrefixLength = Alias.female.prefix.length;
     let f_SuffixLength = Alias.female.suffix.length;
+    let f_TitleLength = Alias.female.title.length;
     let m_PrefixLength = Alias.male.prefix.length;
     let m_SuffixLength = Alias.male.suffix.length;
-    let titleLength = Alias.title.length;
+    let m_TitleLength = Alias.male.title.length;
 
-    let t_alias = titleArray[Math.floor(Math.random()*titleLength)] + " ";
-    let m_alias = m_prefixArray[Math.floor(Math.random()*m_PrefixLength)]+m_SuffixArray[Math.floor(Math.random()*m_SuffixLength)];
-    let f_alias = f_prefixArray[Math.floor(Math.random()*f_PrefixLength)]+f_SuffixArray[Math.floor(Math.random()*f_SuffixLength)];
+    let f_title = f_TitleArray[Math.floor(Math.random()*f_TitleLength)] + " ";
+    let m_title = m_TitleArray[Math.floor(Math.random()*m_TitleLength)] + " ";
+    let m_alias = m_PrefixArray[Math.floor(Math.random()*m_PrefixLength)]+m_SuffixArray[Math.floor(Math.random()*m_SuffixLength)];
+    let f_alias = f_PrefixArray[Math.floor(Math.random()*f_PrefixLength)]+f_SuffixArray[Math.floor(Math.random()*f_SuffixLength)];
 
     if (arguments[0] == "female" || arguments[0] == "f") {
         if ((arguments[1] == "title" || arguments[1] == "t") && arguments.length==2) {
-            receivedMessage.channel.send("**Your female fantasy alias will be:**")
+            receivedMessage.channel.send("**:womens: Your female fantasy alias will be:**")
             receivedMessage.channel.send("`" +
-                t_alias +
+                f_title +
                 f_alias +
                 "`"
             )
         } else if (arguments.length==1){
-            receivedMessage.channel.send("**Your female fantasy alias will be:**")
+            receivedMessage.channel.send("**:womens: Your female fantasy alias will be:**")
             receivedMessage.channel.send("`" +
                 f_alias +
                 "`"
@@ -46,14 +49,14 @@ function alias(prefix, arguments, receivedMessage) {
         }
     } else if (arguments[0] == "male" || arguments[0] == "m") {
         if ((arguments[1] == "title" || arguments[1] == "t") && arguments.length==2) {
-            receivedMessage.channel.send("**Your male fantasy alias will be:**")
+            receivedMessage.channel.send("**:mens: Your male fantasy alias will be:**")
             receivedMessage.channel.send("`" +
-                t_alias +
+                m_title +
                 m_alias +
                 "`"
             )
         } else if (arguments.length==1){
-            receivedMessage.channel.send("**Your male fantasy alias will be:**")
+            receivedMessage.channel.send("**:mens: Your male fantasy alias will be:**")
             receivedMessage.channel.send("`" +
                 m_alias +
                 "`"
