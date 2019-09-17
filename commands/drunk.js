@@ -2,28 +2,30 @@ var Drunk = require("./drunk.json");
 
 function drunk(arguments, receivedMessage) {
     let randomNum = Math.floor(Math.random() * 6);
+    let drunkMessage = "";
 
     switch(randomNum) {
         case 0:
-            receivedMessage.channel.send("**" + SubsfpsVerbDetNoun() + "**")
+            drunkMessage = "**" + SubsfpsVerbDetNoun() + "**";
             break;
         case 1:
-            receivedMessage.channel.send("**" + SubstpsVerbDetNoun() + "**")
+            drunkMessage = "**" + SubstpsVerbDetNoun() + "**";
             break;
         case 2:
-            receivedMessage.channel.send("**" + SubsVerbDetNoun() + "**")
+            drunkMessage = "**" + SubsVerbDetNoun() + "**";
             break;
         case 3:
-            receivedMessage.channel.send("**" + SubsVerbPreDetAdjNoun() + "**")
+            drunkMessage = "**" + SubsVerbPreDetAdjNoun() + "**";
             break;
         case 4:
-            receivedMessage.channel.send("**" + DetNounVerbPreDetNounAdv() + "**")
+            drunkMessage = "**" + DetNounVerbPreDetNounAdv() + "**";
             break;
         case 5:
-            receivedMessage.channel.send("**" + DetNounDoubleVerbsPreDetNoun() + "**")
+            drunkMessage = "**" + DetNounDoubleVerbsPreDetNoun() + "**";
             break;
 
     }
+    receivedMessage.channel.send(":wine_glass: " + drunkMessage)
 }
 
 function SubsfpsVerbDetNoun() {
