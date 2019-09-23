@@ -11,8 +11,11 @@ function drunk(arguments, receivedMessage) {
         case 1:
             drunkMessage = "**" + Sentence2() + "**";
             break;
+        case 2:
+            drunkMessage = "**" + Sentence3() + "**";
+            break;
     }
-    
+
     receivedMessage.channel.send(":wine_glass: " + drunkMessage)
 }
 
@@ -115,6 +118,30 @@ function pluralForm(noun) {
     }
 
     return noun;
+}
+
+function Sentence3() {
+    // The pretty girl.
+    let sentence = ""
+    let determiner = Drunk.determiner[Math.floor(Math.random() * Drunk.determiner.length)]
+    let adjective = Drunk.adjective[Math.floor(Math.random() * Drunk.adjective.length)]
+    let noun = Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)]
+
+    sentence = determiner + " ";
+
+    if (determiner == "both" ||
+        determiner == "many" ||
+        determiner == "some" ||
+        determiner == "these" ||
+        determiner == "those") {
+        sentence += adjective + " " + pluralForm(noun) + ".";
+    } else {
+        sentence += adjective + " " + noun + ".";
+    }
+
+    sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
+
+    return sentence;
 }
 
 module.exports.drunk = drunk;
