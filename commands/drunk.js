@@ -1,7 +1,7 @@
 var Drunk = require("./drunk.json");
 
 function drunk(arguments, receivedMessage) {
-    let randomNum = Math.floor(Math.random() * 2);
+    let randomNum = Math.floor(Math.random() * 3);
     let drunkMessage = "";
 
     switch(randomNum) {
