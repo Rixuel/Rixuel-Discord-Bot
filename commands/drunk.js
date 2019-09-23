@@ -1,110 +1,120 @@
 var Drunk = require("./drunk.json");
 
 function drunk(arguments, receivedMessage) {
-    let randomNum = Math.floor(Math.random() * 6);
+    let randomNum = Math.floor(Math.random() * 2);
     let drunkMessage = "";
 
     switch(randomNum) {
         case 0:
-            drunkMessage = "**" + SubsfpsVerbDetNoun() + "**";
+            drunkMessage = "**" + Sentence1() + "**";
             break;
         case 1:
-            drunkMessage = "**" + SubstpsVerbDetNoun() + "**";
+            drunkMessage = "**" + Sentence2() + "**";
             break;
-        case 2:
-            drunkMessage = "**" + SubsVerbDetNoun() + "**";
-            break;
-        case 3:
-            drunkMessage = "**" + SubsVerbPreDetAdjNoun() + "**";
-            break;
-        case 4:
-            drunkMessage = "**" + DetNounVerbPreDetNounAdv() + "**";
-            break;
-        case 5:
-            drunkMessage = "**" + DetNounDoubleVerbsPreDetNoun() + "**";
-            break;
-
     }
+    
     receivedMessage.channel.send(":wine_glass: " + drunkMessage)
 }
 
-function SubsfpsVerbDetNoun() {
+function Sentence1() {
     // I have a house.
-    let sentence = Drunk.subjectFps[Math.floor(Math.random() * Drunk.subjectFps.length)] + " " +
-        Drunk.SingleVerbFps[Math.floor(Math.random() * Drunk.SingleVerbFps.length)] + " " +
-        Drunk.determiner[Math.floor(Math.random() * Drunk.determiner.length)] + " " +
-        Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)] + "."
+    let sentence = ""
+    let subjects = Drunk.subjects[Math.floor(Math.random() * Drunk.subjects.length)]
+    let SingleVerbFps = Drunk.SingleVerbFps[Math.floor(Math.random() * Drunk.SingleVerbFps.length)]
+    let SingleVerbTps = Drunk.SingleVerbTps[Math.floor(Math.random() * Drunk.SingleVerbTps.length)]
+    let SingleVerb = Drunk.SingleVerb[Math.floor(Math.random() * Drunk.SingleVerb.length)]
+    let determiner = Drunk.determiner[Math.floor(Math.random() * Drunk.determiner.length)]
+    let noun = Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)]
+
+
+    sentence = subjects + " ";
+
+    if (subjects == "i") {
+        sentence += SingleVerbFps + " ";
+    } else if (subjects == "he" || subjects == "she" || subjects == "it") {
+        sentence += SingleVerbTps + " ";
+    } else {
+        sentence += SingleVerb + " ";
+    }
+
+    sentence += determiner + " ";
+
+    if (determiner == "both" ||
+        determiner == "many" ||
+        determiner == "some" ||
+        determiner == "these" ||
+        determiner == "those") {
+        sentence += pluralForm(noun) + ".";
+    } else {
+        sentence += noun + ".";
+    }
 
     sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
 
     return sentence;
 }
 
-function SubstpsVerbDetNoun() {
-    // He has a house.
-    let sentence = Drunk.subjectTps[Math.floor(Math.random() * Drunk.subjectTps.length)] + " " +
-        Drunk.SingleVerbTps[Math.floor(Math.random() * Drunk.SingleVerbTps.length)] + " " +
-        Drunk.determiner[Math.floor(Math.random() * Drunk.determiner.length)] + " " +
-        Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)] + "."
+function Sentence2() {
+    // These cats eat the delicious cake.
+    let sentence = ""
+    let subjects = Drunk.subjects[Math.floor(Math.random() * Drunk.subjects.length)]
+    let SingleVerbFps = Drunk.SingleVerbFps[Math.floor(Math.random() * Drunk.SingleVerbFps.length)]
+    let SingleVerbTps = Drunk.SingleVerbTps[Math.floor(Math.random() * Drunk.SingleVerbTps.length)]
+    let SingleVerb = Drunk.SingleVerb[Math.floor(Math.random() * Drunk.SingleVerb.length)]
+    let determiner = Drunk.determiner[Math.floor(Math.random() * Drunk.determiner.length)]
+    let determiner2 = Drunk.determiner[Math.floor(Math.random() * Drunk.determiner.length)]
+    let noun = Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)]
+    let noun2 = Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)]
+    let adjective = Drunk.adjective[Math.floor(Math.random() * Drunk.adjective.length)]
+
+
+    sentence = determiner + " ";
+
+    if (determiner == "both" ||
+        determiner == "many" ||
+        determiner == "some" ||
+        determiner == "these" ||
+        determiner == "those") {
+        sentence += pluralForm(noun) + " " + SingleVerb + " ";
+    } else {
+        sentence += noun + " " + SingleVerbTps + " ";
+    }
+
+    sentence += determiner2 + " ";
+
+    if (determiner2 == "both" ||
+        determiner2 == "many" ||
+        determiner2 == "some" ||
+        determiner2 == "these" ||
+        determiner2 == "those") {
+        sentence += adjective + " " + pluralForm(noun2) + ".";
+    } else {
+        sentence += adjective + " " + noun2 + ".";
+    }
 
     sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
 
     return sentence;
 }
 
-function SubsVerbDetNoun() {
-    // They have a house.
-    let sentence = Drunk.subjects[Math.floor(Math.random() * Drunk.subjects.length)] + " " +
-        Drunk.SingleVerb[Math.floor(Math.random() * Drunk.SingleVerb.length)] + " " +
-        Drunk.determiner[Math.floor(Math.random() * Drunk.determiner.length)] + " " +
-        Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)] + "."
+function pluralForm(noun) {
+    if (noun[noun.length - 1] == "s" ||
+        noun[noun.length - 1] == "x" ||
+        noun[noun.length - 1] == "z" ||
+        noun[noun.length - 2].concat(noun[noun.length - 1]) == "ch" ||
+        noun[noun.length - 2].concat(noun[noun.length - 1]) == "sh") {
+        noun = noun + "es";
+    } else if (noun[noun.length - 1] == "y" &&
+        noun[noun.length - 2].concat(noun[noun.length - 1]) != "ay" &&
+        noun[noun.length - 2].concat(noun[noun.length - 1]) != "oy") {
+        noun = noun.slice(0, -1) + "ies";
+    } else if (noun[noun.length - 2].concat(noun[noun.length - 1]) == "an") {
+        noun = noun.slice(0, -2) + "en";
+    } else {
+        noun = noun + "s";
+    }
 
-    sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
-
-    return sentence;
-}
-
-function SubsVerbPreDetAdjNoun() {
-    // They sit on the beautiful chair.
-    let sentence = Drunk.subjects[Math.floor(Math.random() * Drunk.subjects.length)] + " " +
-        Drunk.SingleVerb[Math.floor(Math.random() * Drunk.SingleVerb.length)] + " " +
-        Drunk.preposition[Math.floor(Math.random() * Drunk.preposition.length)] + " " +
-        Drunk.determiner[Math.floor(Math.random() * Drunk.determiner.length)] + " " +
-        Drunk.adjective[Math.floor(Math.random() * Drunk.adjective.length)] + " " +
-        Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)] + "."
-
-    sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
-
-    return sentence;
-}
-
-function DetNounVerbPreDetNounAdv() {
-    // The child ran toward his mother happily.
-    let sentence = Drunk.determiner[Math.floor(Math.random() * Drunk.determiner.length)] + " " +
-        Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)] + " " +
-        Drunk.SingleVerbTps[Math.floor(Math.random() * Drunk.SingleVerbTps.length)] + " " +
-        Drunk.preposition[Math.floor(Math.random() * Drunk.preposition.length)] + " " +
-        Drunk.determiner[Math.floor(Math.random() * Drunk.determiner.length)] + " " +
-        Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)] + " " +
-        Drunk.adverb[Math.floor(Math.random() * Drunk.adverb.length)] + "."
-
-    sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
-
-    return sentence;
-}
-
-function DetNounDoubleVerbsPreDetNoun() {
-    // The man is driving over the bridge.
-    let sentence = Drunk.determiner[Math.floor(Math.random() * Drunk.determiner.length)] + " " +
-        Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)] + " " +
-        Drunk.DoubleVerbsTps[Math.floor(Math.random() * Drunk.DoubleVerbsTps.length)] + " " +
-        Drunk.preposition[Math.floor(Math.random() * Drunk.preposition.length)] + " " +
-        Drunk.determiner[Math.floor(Math.random() * Drunk.determiner.length)] + " " +
-        Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)] + "."
-
-    sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
-
-    return sentence;
+    return noun;
 }
 
 module.exports.drunk = drunk;
