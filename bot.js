@@ -18,8 +18,8 @@ client.on("ready", () => {
     console.log("Connected as " + client.user.tag)
 
     // Set bot status to: "Playing with JavaScript"
-    client.user.setActivity("Rixuel", {
-        type: "LISTENING"
+    client.user.setActivity("Claymore", {
+        type: "PLAYING"
     })
 
     // List servers the bot is connected to
