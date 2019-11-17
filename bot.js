@@ -129,8 +129,8 @@ function processCommand(receivedMessage, thisPrefix) {
             ServerInfo.serverinfo(arguments, receivedMessage)
             break;
         case "shame":
-            const webAttachment = new Discord.Attachment("https://i.imgur.com/TVm8XCy.jpg")
-            receivedMessage.channel.send(webAttachment)
+            const shameAttachment = new Discord.Attachment("https://i.imgur.com/TVm8XCy.jpg")
+            receivedMessage.channel.send(shameAttachment)
             break;
         case "troll":
             receivedMessage.channel.send("<Troll message here>")
