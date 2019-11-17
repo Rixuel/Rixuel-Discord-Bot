@@ -19,6 +19,32 @@ function drunk(arguments, receivedMessage) {
     receivedMessage.channel.send(":wine_glass: " + drunkMessage)
 }
 
+function isVowel(char) {
+  var result;
+  result = char == "a" || char == "e" || char == "i" || char == "o" || char == "u";
+  return result;
+}
+
+function pluralForm(noun) {
+    if (noun[noun.length - 1] == "s" ||
+        noun[noun.length - 1] == "x" ||
+        noun[noun.length - 1] == "z" ||
+        noun[noun.length - 2].concat(noun[noun.length - 1]) == "ch" ||
+        noun[noun.length - 2].concat(noun[noun.length - 1]) == "sh") {
+        noun = noun + "es";
+    } else if (noun[noun.length - 1] == "y" &&
+        noun[noun.length - 2].concat(noun[noun.length - 1]) != "ay" &&
+        noun[noun.length - 2].concat(noun[noun.length - 1]) != "oy") {
+        noun = noun.slice(0, -1) + "ies";
+    } else if (noun[noun.length - 2].concat(noun[noun.length - 1]) == "an") {
+        noun = noun.slice(0, -2) + "en";
+    } else {
+        noun = noun + "s";
+    }
+
+    return noun;
+}
+
 function Sentence1() {
     // I have a house.
     let sentence = ""
@@ -40,7 +66,11 @@ function Sentence1() {
         sentence += SingleVerb + " ";
     }
 
-    sentence += determiner + " ";
+    if (determiner == "a" && isVowel(noun.charAt(0))){
+        sentence += determiner + "n ";
+    } else {
+        sentence += determiner + " ";
+    }
 
     if (determiner == "both" ||
         determiner == "many" ||
@@ -70,8 +100,11 @@ function Sentence2() {
     let noun2 = Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)]
     let adjective = Drunk.adjective[Math.floor(Math.random() * Drunk.adjective.length)]
 
-
-    sentence = determiner + " ";
+    if (determiner == "a" && isVowel(noun.charAt(0))){
+        sentence = determiner + "n ";
+    } else {
+        sentence = determiner + " ";
+    }
 
     if (determiner == "both" ||
         determiner == "many" ||
@@ -83,7 +116,11 @@ function Sentence2() {
         sentence += noun + " " + SingleVerbTps + " ";
     }
 
-    sentence += determiner2 + " ";
+    if (determiner2 == "a" && isVowel(adjective.charAt(0))){
+        sentence += determiner2 + "n ";
+    } else {
+        sentence += determiner2 + " ";
+    }
 
     if (determiner2 == "both" ||
         determiner2 == "many" ||
@@ -100,26 +137,6 @@ function Sentence2() {
     return sentence;
 }
 
-function pluralForm(noun) {
-    if (noun[noun.length - 1] == "s" ||
-        noun[noun.length - 1] == "x" ||
-        noun[noun.length - 1] == "z" ||
-        noun[noun.length - 2].concat(noun[noun.length - 1]) == "ch" ||
-        noun[noun.length - 2].concat(noun[noun.length - 1]) == "sh") {
-        noun = noun + "es";
-    } else if (noun[noun.length - 1] == "y" &&
-        noun[noun.length - 2].concat(noun[noun.length - 1]) != "ay" &&
-        noun[noun.length - 2].concat(noun[noun.length - 1]) != "oy") {
-        noun = noun.slice(0, -1) + "ies";
-    } else if (noun[noun.length - 2].concat(noun[noun.length - 1]) == "an") {
-        noun = noun.slice(0, -2) + "en";
-    } else {
-        noun = noun + "s";
-    }
-
-    return noun;
-}
-
 function Sentence3() {
     // The pretty girl.
     let sentence = ""
@@ -127,7 +144,11 @@ function Sentence3() {
     let adjective = Drunk.adjective[Math.floor(Math.random() * Drunk.adjective.length)]
     let noun = Drunk.noun[Math.floor(Math.random() * Drunk.noun.length)]
 
-    sentence = determiner + " ";
+    if (determiner == "a" && isVowel(adjective.charAt(0))){
+        sentence = determiner + "n ";
+    } else {
+        sentence = determiner + " ";
+    }
 
     if (determiner == "both" ||
         determiner == "many" ||
