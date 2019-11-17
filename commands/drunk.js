@@ -34,6 +34,7 @@ function pluralForm(noun) {
         noun = noun + "es";
     } else if (noun[noun.length - 1] == "y" &&
         noun[noun.length - 2].concat(noun[noun.length - 1]) != "ay" &&
+        noun[noun.length - 2].concat(noun[noun.length - 1]) != "ey" &&
         noun[noun.length - 2].concat(noun[noun.length - 1]) != "oy") {
         noun = noun.slice(0, -1) + "ies";
     } else if (noun[noun.length - 2].concat(noun[noun.length - 1]) == "an") {
