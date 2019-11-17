@@ -128,6 +128,10 @@ function processCommand(receivedMessage, thisPrefix) {
         case "serverinfo":
             ServerInfo.serverinfo(arguments, receivedMessage)
             break;
+        case "shame":
+            const webAttachment = new Discord.Attachment("https://i.imgur.com/TVm8XCy.jpg")
+            receivedMessage.channel.send(webAttachment)
+            break;
         case "troll":
             receivedMessage.channel.send("<Troll message here>")
             break;
@@ -164,7 +168,8 @@ function help(arguments, receivedMessage) {
         "`alias`, `ag` : Alias name generator\n" +
         "`drunk` : Bot is drunk and isn't making sense\n" +
         "`roll` : Roll a dice or between a range of numbers\n" +
-        "`rpgday`, `rd` : Check your RPG Day\n"
+        "`rpgday`, `rd` : Check your RPG Day\n" +
+        "`shame` : Game of Thrones Shame\n"
         )
         .addField("Utility",
         "`countwords`, `cw` : Counting words\n" +
