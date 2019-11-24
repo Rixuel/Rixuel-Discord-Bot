@@ -175,6 +175,7 @@ function help(arguments, receivedMessage) {
         .addField("Fun",
         "`alias`, `ag` : Alias name generator\n" +
         "`drunk` : Bot is drunk and isn't making sense\n" +
+        "`fortune` : Imitation of Fortune UNIX Command\n" +
         "`roll` : Roll a dice or between a range of numbers\n" +
         "`rpgday`, `rd` : Check your RPG Day\n" +
         "`shame` : Game of Thrones Shame\n" +
