@@ -7,6 +7,7 @@ var Alias = require("./commands/alias.js");
 var CountWords = require("./commands/countwords.js");
 var Cryptode = require("./commands/cryptode.js");
 var Drunk = require("./commands/drunk.js");
+var Fortune = require("./commands/fortune.js");
 var Note = require("./commands/note.js");
 var Roll = require("./commands/roll.js");
 var RPGday = require("./commands/rpgday.js");
@@ -86,6 +87,9 @@ function processCommand(receivedMessage, thisPrefix) {
         case "drunk":
             Drunk.drunk(arguments, receivedMessage)
             break;
+        case "fortune":
+            Fortune.fortune(arguments, receivedMessage)
+            break;
         case "galatea":
             receivedMessage.channel.send("Yep, that's me")
             break;
@@ -132,6 +136,10 @@ function processCommand(receivedMessage, thisPrefix) {
             const shameAttachment = new Discord.Attachment("https://i.imgur.com/TVm8XCy.jpg")
             receivedMessage.channel.send(shameAttachment)
             break;
+        case "wrong":
+            const wrongAttachment = new Discord.Attachment("https://media.giphy.com/media/L4aGJ659bvSRtw07RZ/giphy.gif")
+            receivedMessage.channel.send(wrongAttachment)
+            break;
         case "troll":
             receivedMessage.channel.send("<Troll message here>")
             break;
@@ -169,7 +177,8 @@ function help(arguments, receivedMessage) {
         "`drunk` : Bot is drunk and isn't making sense\n" +
         "`roll` : Roll a dice or between a range of numbers\n" +
         "`rpgday`, `rd` : Check your RPG Day\n" +
-        "`shame` : Game of Thrones Shame\n"
+        "`shame` : Game of Thrones Shame\n" +
+        "`wrong` : IGA throwing glass of wine\n"
         )
         .addField("Utility",
         "`countwords`, `cw` : Counting words\n" +
