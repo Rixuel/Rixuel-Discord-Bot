@@ -1,7 +1,7 @@
 var Alias = require("./alias.json");
 
 function alias(prefix, arguments, receivedMessage) {
-    let aliasHelpMessage = "Please use `" + prefix + "alias <gender> <title>` or `" + prefix + "ag <gender> <title>`\n" +
+    let aliasHelpMessage = "Please use `" + prefix + "alias` or `" + prefix + "alias <gender> <title>` or `" + prefix + "ag <gender> <title>`\n" +
     "\n**Values for:**\n" +
     "`<gender>` = `female`, `f`, `male`, `m`\n" +
     "`<title>` = `title`, `t`\n" +
@@ -63,6 +63,38 @@ function alias(prefix, arguments, receivedMessage) {
             )
         } else {
             receivedMessage.channel.send(aliasHelpMessage)
+        }
+    } else if (arguments.length==0) {
+        let randomNum = Math.floor(Math.random() * 4);
+        receivedMessage.channel.send("**:mens: :womens: Your random fantasy alias will be:**")
+
+        switch(randomNum) {
+            case 0:
+                receivedMessage.channel.send("`" +
+                    f_title +
+                    f_alias +
+                    "`"
+                )
+                break;
+            case 1:
+                receivedMessage.channel.send("`" +
+                    f_alias +
+                    "`"
+                )
+                break;
+            case 2:
+                receivedMessage.channel.send("`" +
+                    m_title +
+                    m_alias +
+                    "`"
+                )
+                break;
+            case 3:
+                receivedMessage.channel.send("`" +
+                    m_alias +
+                    "`"
+                )
+                break;
         }
     } else {
         receivedMessage.channel.send(aliasHelpMessage)
