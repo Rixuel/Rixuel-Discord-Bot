@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 const client = new Discord.Client()
 const cooldown = new Set();
-//var auth = require("./auth.json");
+var auth = require("./auth.json");
 var AdminLord = require("./commands/adminlord.js");
 var Alias = require("./commands/alias.js");
 var CountWords = require("./commands/countwords.js");
@@ -88,7 +88,7 @@ function processCommand(receivedMessage, thisPrefix) {
             Drunk.drunk(arguments, receivedMessage)
             break;
         case "fortune":
-            Fortune.fortune(arguments, receivedMessage)
+            Fortune.fortune(prefix, arguments, receivedMessage)
             break;
         case "galatea":
             receivedMessage.channel.send("Yep, that's me")
@@ -194,5 +194,5 @@ function help(arguments, receivedMessage) {
 // https://discordapp.com/developers/applications/
 // Application -> Bot -> Token
 
-//client.login(auth.token)
-client.login(process.env.BOT_TOKEN)
+client.login(auth.token)
+//client.login(process.env.BOT_TOKEN)
