@@ -1,4 +1,3 @@
-var Fortune = require("./fortune.json");
 var Art = require("./fortune/art.json");
 var Computers = require("./fortune/computers.json");
 var Cookie = require("./fortune/cookie.json");
@@ -13,213 +12,164 @@ var Fortunes = require("./fortune/fortunes.json");
 var Goedel = require("./fortune/goedel.json");
 var Humorists = require("./fortune/humorists.json");
 var Kids = require("./fortune/kids.json");
+var Knghtbrd = require("./fortune/knghtbrd.json");
+var Law = require("./fortune/law.json");
+var Linux = require("./fortune/linux.json");
+var LinuxCookie = require("./fortune/linuxcookie.json");
+var Literature = require("./fortune/literature.json");
+var Love = require("./fortune/love.json");
+var Magic = require("./fortune/magic.json");
+var Medicine = require("./fortune/medicine.json");
+var MenWomen = require("./fortune/men-women.json");
+var Miscellaneous = require("./fortune/miscellaneous.json");
+var News = require("./fortune/news.json");
+var Paradoxum = require("./fortune/paradoxum.json");
+var People = require("./fortune/people.json");
+var Perl = require("./fortune/perl.json");
+var Pets = require("./fortune/pets.json");
+var Platitudes = require("./fortune/platitudes.json");
+var Politics = require("./fortune/politics.json");
+// Fortune data by github.com/shlomif
+const Discord = require("discord.js")
 
 function fortune(prefix, arguments, receivedMessage) {
-    let fortuneHelpMessage = "Please use `" + prefix + "fortune` or `" + prefix + "fortune <category>`\n" +
-    "\n**List of <category>**\n" +
-    "`art`\n" +
-    "`computers`\n" +
-    "`cookie`\n" +
-    "`debian`\n" +
-    "`definitions`\n" +
-    "`disclaimer`\n" +
-    "`drugs`\n" +
-    "`education`\n" +
-    "`ethnic`\n" +
-    "`food`\n" +
-    "`fortunes`\n" +
-    "`goedel`\n" +
-    "`humorists`\n" +
-    "`kids`\n";
     let fortuneMessage = "";
+    let fortuneHelpMessage = new Discord.RichEmbed()
+        .setColor("#FF5500")
+        .setTitle("Fortune Help Message")
+        .setDescription("Please use `" + prefix + "fortune` or `" + prefix + "fortune <category>`\n")
+        .addField("<category>",
+        "`art`\n" +
+        "`computers`\n" +
+        "`cookie`\n" +
+        "`debian`\n" +
+        "`definitions`\n" +
+        "`disclaimer`\n" +
+        "`drugs`\n" +
+        "`education`\n" +
+        "`ethnic`\n" +
+        "`food`\n" +
+        "`fortunes`\n" +
+        "`goedel`\n" +
+        "`humorists`\n" +
+        "`kids`\n",
+        true)
+        .addField("<category>",
+        "`knghtbrd`\n" +
+        "`law`\n" +
+        "`linux`\n" +
+        "`linuxcookie`\n" +
+        "`literature`\n" +
+        "`love`\n" +
+        "`magic`\n" +
+        "`medicine`\n" +
+        "`men-women`\n" +
+        "`miscellaneous`\n" +
+        "`news`\n" +
+        "`paradoxum`\n" +
+        "`people`\n" +
+        "`perl`\n" +
+        "`pets`\n" +
+        "`platitudes`\n" +
+        "`politics`\n",
+        true)
+        .addField("<category>", "...", true)
+        .setFooter("Fortune data by github.com/shlomif")
+
+    const fortuneObject = {
+        "art": Art.art,
+        "computers": Computers.computers,
+        "cookie": Cookie.cookie,
+        "debian": Debian.debian,
+        "definitions": Definitions.definitions,
+        "disclaimer": Disclaimer.disclaimer,
+        "drugs": Drugs.drugs,
+        "education": Education.education,
+        "ethnic": Ethnic.ethnic,
+        "food": Food.food,
+        "fortunes": Fortunes.fortunes,
+        "goedel": Goedel.goedel,
+        "humorists": Humorists.humorists,
+        "kids": Kids.kids,
+        "knghtbrd": Knghtbrd.knghtbrd,
+        "law": Law.law,
+        "linux": Linux.linux,
+        "linuxcookie": LinuxCookie.linuxcookie,
+        "literature": Literature.literature,
+        "love": Love.love,
+        "magic": Magic.magic,
+        "medicine": Medicine.medicine,
+        "men-women": MenWomen.menwomen,
+        "miscellaneous": Miscellaneous.miscellaneous,
+        "news": News.news,
+        "paradoxum": Paradoxum.paradoxum,
+        "people": People.people,
+        "perl": Perl.perl,
+        "pets": Pets.pets,
+        "platitudes": Platitudes.platitudes,
+        "politics": Politics.politics
+    };
 
     if (arguments.length==0) {
-        fortuneMessage = randomFortunes();
+        fortuneMessage = randomFortunes(fortuneObject);
+        receivedMessage.channel.send(fortuneMessage)
     }
-    else if (arguments[0] == "art") {
-        receivedMessage.channel.send("**`Category: Art`**")
-        fortuneMessage = art();
-    }
-    else if (arguments[0] == "computers") {
-        receivedMessage.channel.send("**`Category: Computers`**")
-        fortuneMessage = computers();
-    }
-    else if (arguments[0] == "cookie") {
-        receivedMessage.channel.send("**`Category: Cookie`**")
-        fortuneMessage = cookie();
-    }
-    else if (arguments[0] == "debian") {
-        receivedMessage.channel.send("**`Category: Debian`**")
-        fortuneMessage = debian();
-    }
-    else if (arguments[0] == "definitions") {
-        receivedMessage.channel.send("**`Category: Definitions`**")
-        fortuneMessage = definitions();
-    }
-    else if (arguments[0] == "disclaimer") {
-        receivedMessage.channel.send("**`Category: Disclaimer`**")
-        fortuneMessage = disclaimer();
-    }
-    else if (arguments[0] == "drugs") {
-        receivedMessage.channel.send("**`Category: Drugs`**")
-        fortuneMessage = drugs();
-    }
-    else if (arguments[0] == "education") {
-        receivedMessage.channel.send("**`Category: Education`**")
-        fortuneMessage = education();
-    }
-    else if (arguments[0] == "ethnic") {
-        receivedMessage.channel.send("**`Category: Ethnic`**")
-        fortuneMessage = ethnic();
-    }
-    else if (arguments[0] == "food") {
-        receivedMessage.channel.send("**`Category: Food`**")
-        fortuneMessage = food();
-    }
-    else if (arguments[0] == "fortunes") {
-        receivedMessage.channel.send("**`Category: Fortunes`**")
-        fortuneMessage = fortunes();
-    }
-    else if (arguments[0] == "goedel") {
-        receivedMessage.channel.send("**`Category: Goedel`**")
-        fortuneMessage = goedel();
-    }
-    else if (arguments[0] == "humorists") {
-        receivedMessage.channel.send("**`Category: Humorists`**")
-        fortuneMessage = humorists();
-    }
-    else if (arguments[0] == "kids") {
-        receivedMessage.channel.send("**`Category: Kids`**")
-        fortuneMessage = kids();
+    else if (arguments.length==1 && fortuneObject[arguments[0].toLowerCase()]) {
+        fortuneMessage = resultFortunes(fortuneObject[arguments[0].toLowerCase()]);
+        receivedMessage.channel.send("**`Category: " + arguments[0].toUpperCase() +
+        "`**\n" + "```" + fortuneMessage + "```")
     }
     else {
         receivedMessage.channel.send(fortuneHelpMessage);
-        fortuneMessage = "End of the list";
     }
-
-    receivedMessage.channel.send("```" + fortuneMessage + "```")
 }
 
-function randomFortunes() {
+function randomFortunes(fortuneObject) {
     let randomMessage = "";
-    let randomNum = Math.floor(Math.random() * 3);
+    let randomArray = [
+        "art",
+        "computers",
+        "cookie",
+        "debian",
+        "definitions",
+        "disclaimer",
+        "drugs",
+        "education",
+        "ethnic",
+        "food",
+        "fortunes",
+        "goedel",
+        "humorists",
+        "kids",
+        "knghtbrd",
+        "law",
+        "linux",
+        "linuxcookie",
+        "literature",
+        "love",
+        "magic",
+        "medicine",
+        "men-women",
+        "miscellaneous",
+        "news",
+        "paradoxum",
+        "people",
+        "perl",
+        "pets",
+        "platitudes",
+        "politics"
+    ];
+    let randomNum = Math.floor(Math.random() * randomArray.length);
 
-    switch(randomNum) {
-        case 0:
-            randomMessage = tempfortune();
-            break;
-        case 1:
-            randomMessage = art();
-            break;
-        case 2:
-            randomMessage = computers();
-            break;
-    }
+    randomMessage = "**`Category: " + randomArray[randomNum].toUpperCase() +
+    "`**\n" + "```" + resultFortunes(fortuneObject[randomArray[randomNum]]) + "```";
 
     return randomMessage;
 }
 
-function tempfortune() {
-    let getfortune = Fortune.fortune;
-    let fortuneLength = Fortune.fortune.length;
-    let theFortune = getfortune[Math.floor(Math.random()*fortuneLength)];
-    return theFortune;
-}
-
-function art() {
-    let data = Art.art;
-    let length = Art.art.length;
-    let result = data[Math.floor(Math.random()*length)];
-    return result;
-}
-
-function computers() {
-    let data = Computers.computers;
-    let length = Computers.computers.length;
-    let result = data[Math.floor(Math.random()*length)];
-    return result;
-}
-
-function cookie() {
-    let data = Cookie.cookie;
-    let length = Cookie.cookie.length;
-    let result = data[Math.floor(Math.random()*length)];
-    return result;
-}
-
-function debian() {
-    let data = Debian.debian;
-    let length = Debian.debian.length;
-    let result = data[Math.floor(Math.random()*length)];
-    return result;
-}
-
-function definitions() {
-    let data = Definitions.definitions;
-    let length = Definitions.definitions.length;
-    let result = data[Math.floor(Math.random()*length)];
-    return result;
-}
-
-function disclaimer() {
-    let data = Disclaimer.disclaimer;
-    let length = Disclaimer.disclaimer.length;
-    let result = data[Math.floor(Math.random()*length)];
-    return result;
-}
-
-function drugs() {
-    let data = Drugs.drugs;
-    let length = Drugs.drugs.length;
-    let result = data[Math.floor(Math.random()*length)];
-    return result;
-}
-
-function education() {
-    let data = Education.education;
-    let length = Education.education.length;
-    let result = data[Math.floor(Math.random()*length)];
-    return result;
-}
-
-function ethnic() {
-    let data = Ethnic.ethnic;
-    let length = Ethnic.ethnic.length;
-    let result = data[Math.floor(Math.random()*length)];
-    return result;
-}
-
-function food() {
-    let data = Food.food;
-    let length = Food.food.length;
-    let result = data[Math.floor(Math.random()*length)];
-    return result;
-}
-
-function fortunes() {
-    let data = Fortunes.fortunes;
-    let length = Fortunes.fortunes.length;
-    let result = data[Math.floor(Math.random()*length)];
-    return result;
-}
-
-function goedel() {
-    let data = Goedel.goedel;
-    let length = Goedel.goedel.length;
-    let result = data[Math.floor(Math.random()*length)];
-    return result;
-}
-
-function humorists() {
-    let data = Humorists.humorists;
-    let length = Humorists.humorists.length;
-    let result = data[Math.floor(Math.random()*length)];
-    return result;
-}
-
-function kids() {
-    let data = Kids.kids;
-    let length = Kids.kids.length;
+function resultFortunes(jsondata) {
+    let data = jsondata;
+    let length = data.length;
     let result = data[Math.floor(Math.random()*length)];
     return result;
 }
