@@ -90,7 +90,7 @@ function fortune(prefix, arguments, receivedMessage) {
         "`sports`\n" +
         "`startrek`\n" +
         "`tao`\n" +
-        "`translate-m`\ne" +
+        "`translate-m`\n" +
         "`wisdom`\n" +
         "`work`\n" +
         "`zippy`\n",
