@@ -29,6 +29,16 @@ var Perl = require("./fortune/perl.json");
 var Pets = require("./fortune/pets.json");
 var Platitudes = require("./fortune/platitudes.json");
 var Politics = require("./fortune/politics.json");
+var Riddles = require("./fortune/riddles.json");
+var Science = require("./fortune/science.json");
+var SongsPoems = require("./fortune/songs-poems.json");
+var Sports = require("./fortune/sports.json");
+var StarTrek = require("./fortune/startrek.json");
+var Tao = require("./fortune/tao.json");
+var TranslateMe = require("./fortune/translate-me.json");
+var Wisdom = require("./fortune/wisdom.json");
+var Work = require("./fortune/work.json");
+var Zippy = require("./fortune/zippy.json");
 // Fortune data by github.com/shlomif
 const Discord = require("discord.js")
 
@@ -68,12 +78,23 @@ function fortune(prefix, arguments, receivedMessage) {
         "`news`\n" +
         "`paradoxum`\n" +
         "`people`\n" +
-        "`perl`\n" +
+        "`perl`\n",
+        true)
+        .addField("<category>",
         "`pets`\n" +
         "`platitudes`\n" +
-        "`politics`\n",
+        "`politics`\n" +
+        "`riddles`\n" +
+        "`science`\n" +
+        "`songs-poems`\n" +
+        "`sports`\n" +
+        "`startrek`\n" +
+        "`tao`\n" +
+        "`translate-m`\ne" +
+        "`wisdom`\n" +
+        "`work`\n" +
+        "`zippy`\n",
         true)
-        .addField("<category>", "...", true)
         .setFooter("Fortune data by github.com/shlomif")
 
     const fortuneObject = {
@@ -100,14 +121,24 @@ function fortune(prefix, arguments, receivedMessage) {
         "magic": Magic.magic,
         "medicine": Medicine.medicine,
         "men-women": MenWomen.menwomen,
-        "miscellaneous": Miscellaneous.miscellaneous,
+        "misc": Miscellaneous.miscellaneous,
         "news": News.news,
         "paradoxum": Paradoxum.paradoxum,
         "people": People.people,
         "perl": Perl.perl,
         "pets": Pets.pets,
         "platitudes": Platitudes.platitudes,
-        "politics": Politics.politics
+        "politics": Politics.politics,
+        "riddles": Riddles.riddles,
+        "science": Science.science,
+        "songs-poems": SongsPoems.songspoems,
+        "sports": Sports.sports,
+        "startrek": StarTrek.startrek,
+        "tao": Tao.tao,
+        "translate-me": TranslateMe.translateme,
+        "wisdom": Wisdom.wisdom,
+        "work": Work.work,
+        "zippy": Zippy.zippy
     };
 
     if (arguments.length==0) {
@@ -115,9 +146,11 @@ function fortune(prefix, arguments, receivedMessage) {
         receivedMessage.channel.send(fortuneMessage)
     }
     else if (arguments.length==1 && fortuneObject[arguments[0].toLowerCase()]) {
-        fortuneMessage = resultFortunes(fortuneObject[arguments[0].toLowerCase()]);
-        receivedMessage.channel.send("**`Category: " + arguments[0].toUpperCase() +
-        "`**\n" + "```" + fortuneMessage + "```")
+        fortuneMessage = new Discord.RichEmbed()
+        .setColor("#FFAA00")
+        .setTitle("Category: " + arguments[0].toUpperCase())
+        .setDescription("```" + resultFortunes(fortuneObject[arguments[0].toLowerCase()]) + "```")
+        receivedMessage.channel.send(fortuneMessage)
     }
     else {
         receivedMessage.channel.send(fortuneHelpMessage);
@@ -150,19 +183,31 @@ function randomFortunes(fortuneObject) {
         "magic",
         "medicine",
         "men-women",
-        "miscellaneous",
+        "misc",
         "news",
         "paradoxum",
         "people",
         "perl",
         "pets",
         "platitudes",
-        "politics"
+        "politics",
+        "riddles",
+        "science",
+        "songs-poems",
+        "sports",
+        "startrek",
+        "tao",
+        "translate-me",
+        "wisdom",
+        "work",
+        "zippy"
     ];
     let randomNum = Math.floor(Math.random() * randomArray.length);
 
-    randomMessage = "**`Category: " + randomArray[randomNum].toUpperCase() +
-    "`**\n" + "```" + resultFortunes(fortuneObject[randomArray[randomNum]]) + "```";
+    randomMessage = new Discord.RichEmbed()
+    .setColor("#FFAA00")
+    .setTitle("Category: " + randomArray[randomNum].toUpperCase())
+    .setDescription("```" + resultFortunes(fortuneObject[randomArray[randomNum]]) + "```")
 
     return randomMessage;
 }
