@@ -74,7 +74,7 @@ function fortune(prefix, arguments, receivedMessage) {
         "`magic`\n" +
         "`medicine`\n" +
         "`men-women`\n" +
-        "`miscellaneous`\n" +
+        "`misc`\n" +
         "`news`\n" +
         "`paradoxum`\n" +
         "`people`\n" +
