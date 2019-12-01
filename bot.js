@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 const client = new Discord.Client()
 const cooldown = new Set();
-//var auth = require("./auth.json");
+var auth = require("./auth.json");
 var AdminLord = require("./commands/adminlord.js");
 var Alias = require("./commands/alias.js");
 var CountWords = require("./commands/countwords.js");
@@ -12,6 +12,7 @@ var Note = require("./commands/note.js");
 var Roll = require("./commands/roll.js");
 var RPGday = require("./commands/rpgday.js");
 var ServerInfo = require("./commands/serverinfo.js");
+var UserInfo = require("./commands/userinfo.js");
 var tryCMD = require("./commands/try.js");
 var prefix = "c!";
 
@@ -136,6 +137,9 @@ function processCommand(receivedMessage, thisPrefix) {
             const shameAttachment = new Discord.Attachment("https://i.imgur.com/TVm8XCy.jpg")
             receivedMessage.channel.send(shameAttachment)
             break;
+        case "userinfo":
+            UserInfo.userinfo(arguments, receivedMessage)
+            break;
         case "wrong":
             const wrongAttachment = new Discord.Attachment("https://media.giphy.com/media/L4aGJ659bvSRtw07RZ/giphy.gif")
             receivedMessage.channel.send(wrongAttachment)
@@ -166,7 +170,8 @@ function help(arguments, receivedMessage) {
         "`avatar` : Get user avatar\n" +
         "`ping` : Pong!\n" +
         "`prefix` : Bot's prefix\n" +
-        "`serverinfo` : Server information\n"
+        "`serverinfo` : Server information\n" +
+        "`userinfo` : User information\n"
         )
         .addField("Encoding",
         "`base64` : Encoding\n" +
@@ -194,5 +199,5 @@ function help(arguments, receivedMessage) {
 // https://discordapp.com/developers/applications/
 // Application -> Bot -> Token
 
-//client.login(auth.token)
-client.login(process.env.BOT_TOKEN)
+client.login(auth.token)
+//client.login(process.env.BOT_TOKEN)
