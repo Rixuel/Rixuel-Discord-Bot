@@ -20,7 +20,7 @@ client.on("ready", () => {
     console.log("Connected as " + client.user.tag)
 
     // Set bot status to: "Playing with JavaScript"
-    client.user.setActivity("Claymore", {
+    client.user.setActivity("I CAN'T PLAY 4EVA", {
         type: "PLAYING"
     })
 
