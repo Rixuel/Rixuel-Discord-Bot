@@ -171,7 +171,7 @@ function help(arguments, receivedMessage) {
         "`avatar` : Get user avatar\n" +
         "`ping` : Pong!\n" +
         "`prefix` : Bot's prefix\n" +
-        "`serverinfo` : Server information\n" +
+        "`serverinfo`, `si` : Server information\n" +
         "`userinfo` : User information\n"
         )
         .addField("Encoding",
