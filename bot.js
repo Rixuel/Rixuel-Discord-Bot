@@ -73,10 +73,12 @@ function processCommand(receivedMessage, thisPrefix) {
                 return
             }
 
-            receivedMessage.channel.send(
-                "Avatar of " + userForAvatar + "\n" +
-                userForAvatar.avatarURL
-            )
+            const avatarEmbed = new Discord.MessageEmbed()
+                .setColor(0x333333)
+                .setAuthor(userForAvatar.username + "#" + userForAvatar.discriminator)
+                .setImage(userForAvatar.avatarURL({ format: 'png', dynamic: true, size: 1024 }))
+
+            receivedMessage.channel.send(avatarEmbed)
             break;
         case "base64":
             Cryptode.base64(prefix, arguments, receivedMessage)
