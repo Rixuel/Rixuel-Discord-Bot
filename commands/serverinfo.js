@@ -7,7 +7,6 @@ function checkDays(date) {
     return days + (days == 1 ? " day" : " days") + " ago";
 };
 
-let verifLevels = ["None", "Low", "Medium", "(╯°□°）╯︵  ┻━┻", "┻━┻ミヽ(ಠ益ಠ)ノ彡┻━┻"];
 let region = {
     "brazil": ":flag_br: Brazil",
     "eu-central": ":flag_eu: Central Europe",
@@ -27,18 +26,18 @@ let region = {
 };
 
 function serverinfo(arguments, receivedMessage) {
-    const embed = new Discord.RichEmbed()
-        .setAuthor(receivedMessage.guild.name, receivedMessage.guild.iconURL)
+    const embed = new Discord.MessageEmbed()
+        .setAuthor(receivedMessage.guild.name, receivedMessage.guild.iconURL())
         .addField("Name", receivedMessage.guild.name, true)
         .addField("ID", receivedMessage.guild.id, true)
         .addField("Owner", `${receivedMessage.guild.owner.user.username}#${receivedMessage.guild.owner.user.discriminator}`, true)
         .addField("Region", region[receivedMessage.guild.region], true)
-        .addField("Total | Humans | Bots", `${receivedMessage.guild.members.size} | ${receivedMessage.guild.members.filter(member => !member.user.bot).size} | ${receivedMessage.guild.members.filter(member => member.user.bot).size}`, true)
-        .addField("Verification Level", verifLevels[receivedMessage.guild.verificationLevel], true)
-        .addField("Channels", receivedMessage.guild.channels.size, true)
-        .addField("Roles", receivedMessage.guild.roles.size, true)
+        .addField("Total | Humans | Bots", `${receivedMessage.guild.memberCount} | ${receivedMessage.guild.members.cache.filter(member => !member.user.bot).size} | ${receivedMessage.guild.members.cache.filter(member => member.user.bot).size}`, true)
+        .addField("Verification Level", receivedMessage.guild.verificationLevel, true)
+        .addField("Channels", receivedMessage.guild.channels.cache.filter((c) => c.type !== "category").size, true)
+        .addField("Roles", receivedMessage.guild.roles.cache.size, true)
         .addField("Creation Date", `${receivedMessage.channel.guild.createdAt.toUTCString().substr(0, 16)} (${checkDays(receivedMessage.channel.guild.createdAt)})`, true)
-        .setThumbnail(receivedMessage.guild.iconURL)
+        .setThumbnail(receivedMessage.guild.iconURL())
 
     receivedMessage.channel.send(embed)
 }

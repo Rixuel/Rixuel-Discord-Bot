@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
-const client = new Discord.Client()
+const client = new Discord.Client({ ws: { intents: new Discord.Intents(Discord.Intents.ALL) }});
 const cooldown = new Set();
-//var auth = require("./auth.json");
+var auth = require("./auth.json");
 var AdminLord = require("./commands/adminlord.js");
 var Alias = require("./commands/alias.js");
 var CountWords = require("./commands/countwords.js");
@@ -26,7 +26,7 @@ client.on("ready", () => {
 
     // List servers the bot is connected to
     console.log("Servers:")
-    client.guilds.forEach((guild) => {
+    client.guilds.cache.forEach((guild) => {
         console.log("-- " + guild.name)
     })
 })
@@ -131,6 +131,7 @@ function processCommand(receivedMessage, thisPrefix) {
             }
             break;
         case "serverinfo":
+        case "si":
             ServerInfo.serverinfo(arguments, receivedMessage)
             break;
         case "shame":
@@ -199,5 +200,5 @@ function help(arguments, receivedMessage) {
 // https://discordapp.com/developers/applications/
 // Application -> Bot -> Token
 
-//client.login(auth.token)
-client.login(process.env.BOT_TOKEN)
+client.login(auth.token)
+//client.login(process.env.BOT_TOKEN)
