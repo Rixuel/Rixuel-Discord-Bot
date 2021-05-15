@@ -163,10 +163,10 @@ function processCommand(receivedMessage, thisPrefix) {
 }
 
 function help(arguments, receivedMessage) {
-    let embedHelpMessage = new Discord.RichEmbed()
+    let embedHelpMessage = new Discord.MessageEmbed()
         .setColor("#DFDAD0")
         .setTitle("List of Commands")
-        .setDescription("Prefix : " + prefix)
+        .setDescription("Prefix : `" + prefix + "`")
         .addField("Basic",
         "`avatar` : Get user avatar\n" +
         "`ping` : Pong!\n" +
