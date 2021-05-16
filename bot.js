@@ -108,7 +108,7 @@ function processCommand(receivedMessage, thisPrefix) {
             Note.note(prefix, arguments, receivedMessage)
             break;
         case "ping":
-            receivedMessage.channel.send("`" + (new Date().getTime() - receivedMessage.createdTimestamp) + " ms`");
+            receivedMessage.channel.send(`:ping_pong: Latency is **${Date.now() - receivedMessage.createdTimestamp}ms**. API Latency is **${Math.round(client.ws.ping)}ms**`);
             break;
         case "prefix":
             receivedMessage.channel.send("The prefix is: `" + prefix + "`")
