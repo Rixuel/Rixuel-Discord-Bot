@@ -143,6 +143,7 @@ function processCommand(receivedMessage, thisPrefix) {
             receivedMessage.channel.send(shameAttachment)
             break;
         case "userinfo":
+        case "ui":
             UserInfo.userinfo(arguments, receivedMessage)
             break;
         case "wrong":
@@ -176,7 +177,7 @@ function help(arguments, receivedMessage) {
         "`ping` : Pong!\n" +
         "`prefix` : Bot's prefix\n" +
         "`serverinfo`, `si` : Server information\n" +
-        "`userinfo` : User information\n"
+        "`userinfo`, `ui` : User information\n"
         )
         .addField("Encoding",
         "`base64`, `b64` : Encoding\n" +

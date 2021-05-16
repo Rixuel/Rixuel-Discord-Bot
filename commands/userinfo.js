@@ -2,14 +2,21 @@ const Discord = require("discord.js")
 
 function userinfo(arguments, receivedMessage) {
     const theUser = receivedMessage.mentions.users.first() || receivedMessage.author;
-    const embed = new Discord.RichEmbed()
+
+    let activities = theUser.presence.activities.toString();
+    // MessageEmbed doesn't allow empty value
+    if (activities == "") {
+        activities = "None";
+    }
+
+    const embed = new Discord.MessageEmbed()
         .setColor("#44DD00")
-        .setTitle(receivedMessage.guild.members.get(theUser.id).displayName)
+        .setTitle(receivedMessage.guild.members.cache.get(theUser.id).displayName)
         .setDescription(`**${theUser.username}**#${theUser.discriminator}`)
-        .setThumbnail(theUser.avatarURL)
+        .setThumbnail(theUser.avatarURL())
         .addField("Status", String(theUser.presence.status).toUpperCase(), true)
-        .addField("Playing", String(theUser.presence.game).toUpperCase(), true)
-        .addField("Roles: \n", `[ ${receivedMessage.guild.member(theUser).roles.map(r => `${r}`).join(' | ')} ]`)
+        .addField("Activities", `${activities}`, true)
+        .addField("Roles: \n", `[ ${receivedMessage.guild.member(theUser).roles.cache.map(r => `${r}`).join(' | ')} ]`)
         .addField("Joined Discord: \n", theUser.createdAt.toUTCString())
         .addField("Joined Server: \n", receivedMessage.guild.member(theUser).joinedAt.toUTCString())
         .setFooter(theUser.id)
