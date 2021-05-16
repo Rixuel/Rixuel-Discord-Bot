@@ -74,7 +74,7 @@ function processCommand(receivedMessage, thisPrefix) {
             }
 
             const avatarEmbed = new Discord.MessageEmbed()
-                .setColor(0x234789)
+                .setColor('#000000')
                 .setAuthor(userForAvatar.username + "#" + userForAvatar.discriminator)
                 .setImage(userForAvatar.avatarURL({ format: 'png', dynamic: true, size: 1024 }))
 
