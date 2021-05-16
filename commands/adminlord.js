@@ -28,7 +28,7 @@ function directmessage(prefix, arguments, receivedMessage) {
         }
     }
 
-    embedDirectMessage = new Discord.RichEmbed()
+    embedDirectMessage = new Discord.MessageEmbed()
         .setColor("#CCCC00")
         .setTitle("Message")
         .setDescription(str)
