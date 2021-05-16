@@ -1,7 +1,11 @@
 var Alias = require("./alias.json");
 
 function alias(prefix, arguments, receivedMessage) {
-    let aliasHelpMessage = "Please use `" + prefix + "alias` or `" + prefix + "alias <gender> <title>` or `" + prefix + "ag <gender> <title>`\n" +
+    let aliasHelpMessage = "**Command usage:**\n`" +
+    prefix + "alias`\n`" +
+    prefix + "alias <gender>`\n`" +
+    prefix + "alias <gender> <title>`\n`" +
+    prefix + "ag <gender> <title>`\n" +
     "\n**Values for:**\n" +
     "`<gender>` = `female`, `f`, `male`, `m`\n" +
     "`<title>` = `title`, `t`\n" +
