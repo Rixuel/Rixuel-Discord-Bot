@@ -63,7 +63,7 @@ function processCommand(receivedMessage, thisPrefix) {
             Alias.alias(prefix, arguments, receivedMessage)
             break;
         case "alterna":
-            const webAttachment = new Discord.Attachment("https://alternaland.github.io/img/alternalogo.png")
+            const webAttachment = new Discord.MessageAttachment("https://alternaland.github.io/img/alternalogo.png")
             receivedMessage.channel.send(webAttachment)
             break;
         case "avatar":
@@ -95,7 +95,7 @@ function processCommand(receivedMessage, thisPrefix) {
         case "fortune":
             Fortune.fortune(prefix, arguments, receivedMessage)
             break;
-        case "galatea":
+        case "flora":
             receivedMessage.channel.send("Yep, that's me")
             break;
         case "hex":
@@ -141,7 +141,7 @@ function processCommand(receivedMessage, thisPrefix) {
             ServerInfo.serverinfo(arguments, receivedMessage)
             break;
         case "shame":
-            const shameAttachment = new Discord.Attachment("https://i.imgur.com/TVm8XCy.jpg")
+            const shameAttachment = new Discord.MessageAttachment("https://i.imgur.com/TVm8XCy.jpg")
             receivedMessage.channel.send(shameAttachment)
             break;
         case "userinfo":
@@ -149,7 +149,7 @@ function processCommand(receivedMessage, thisPrefix) {
             UserInfo.userinfo(arguments, receivedMessage)
             break;
         case "wrong":
-            const wrongAttachment = new Discord.Attachment("https://media.giphy.com/media/L4aGJ659bvSRtw07RZ/giphy.gif")
+            const wrongAttachment = new Discord.MessageAttachment("https://media.giphy.com/media/L4aGJ659bvSRtw07RZ/giphy.gif")
             receivedMessage.channel.send(wrongAttachment)
             break;
         case "troll":
