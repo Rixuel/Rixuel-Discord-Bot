@@ -12,7 +12,7 @@ function note(prefix, arguments, receivedMessage) {
             }
         }
 
-        embedDirectMessage = new Discord.RichEmbed()
+        embedDirectMessage = new Discord.MessageEmbed()
             .setColor("#44DD00")
             .setTitle("Discord Note")
             .setDescription(str)
