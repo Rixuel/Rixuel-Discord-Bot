@@ -88,6 +88,7 @@ function processCommand(receivedMessage, thisPrefix) {
             CountWords.countwords(arguments, receivedMessage)
             break;
         case "drunk":
+        case "high":
             Drunk.drunk(arguments, receivedMessage)
             break;
         case "fortune":
@@ -182,7 +183,7 @@ function help(arguments, receivedMessage) {
         )
         .addField("Fun",
         "`alias`, `ag` : Alias name generator\n" +
-        "`drunk` : Bot is drunk and isn't making sense\n" +
+        "`drunk`, `high` : Bot is drunk or high and makes no sense\n" +
         "`fortune` : Imitation of Fortune UNIX Command\n" +
         "`roll` : Roll a dice or between a range of numbers\n" +
         "`rpgday`, `rd` : Check your RPG Day\n" +
