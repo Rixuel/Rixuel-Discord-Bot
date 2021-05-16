@@ -44,7 +44,7 @@ const Discord = require("discord.js")
 
 function fortune(prefix, arguments, receivedMessage) {
     let fortuneMessage = "";
-    let fortuneHelpMessage = new Discord.RichEmbed()
+    let fortuneHelpMessage = new Discord.MessageEmbed()
         .setColor("#FF5500")
         .setTitle("Fortune Help Message")
         .setDescription("Please use `" + prefix + "fortune` or `" + prefix + "fortune <category>`\n")
@@ -146,7 +146,7 @@ function fortune(prefix, arguments, receivedMessage) {
         receivedMessage.channel.send(fortuneMessage)
     }
     else if (arguments.length==1 && fortuneObject[arguments[0].toLowerCase()]) {
-        fortuneMessage = new Discord.RichEmbed()
+        fortuneMessage = new Discord.MessageEmbed()
         .setColor("#FFAA00")
         .setTitle("Category: " + arguments[0].toUpperCase())
         .setDescription("```" + resultFortunes(fortuneObject[arguments[0].toLowerCase()]) + "```")
@@ -204,7 +204,7 @@ function randomFortunes(fortuneObject) {
     ];
     let randomNum = Math.floor(Math.random() * randomArray.length);
 
-    randomMessage = new Discord.RichEmbed()
+    randomMessage = new Discord.MessageEmbed()
     .setColor("#FFAA00")
     .setTitle("Category: " + randomArray[randomNum].toUpperCase())
     .setDescription("```" + resultFortunes(fortuneObject[randomArray[randomNum]]) + "```")
