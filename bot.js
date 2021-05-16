@@ -81,6 +81,7 @@ function processCommand(receivedMessage, thisPrefix) {
             receivedMessage.channel.send(avatarEmbed)
             break;
         case "base64":
+        case "b64":
             Cryptode.base64(prefix, arguments, receivedMessage)
             break;
         case "countwords":
@@ -178,7 +179,7 @@ function help(arguments, receivedMessage) {
         "`userinfo` : User information\n"
         )
         .addField("Encoding",
-        "`base64` : Encoding\n" +
+        "`base64`, `b64` : Encoding\n" +
         "`hex` : Encoding\n"
         )
         .addField("Fun",
