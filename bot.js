@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 const client = new Discord.Client({ ws: { intents: new Discord.Intents(Discord.Intents.ALL) }});
 const cooldown = new Set();
-var auth = require("./auth.json");
+//var auth = require("./auth.json");
 var AdminLord = require("./commands/adminlord.js");
 var Alias = require("./commands/alias.js");
 var CountWords = require("./commands/countwords.js");
@@ -108,7 +108,9 @@ function processCommand(receivedMessage, thisPrefix) {
             Note.note(prefix, arguments, receivedMessage)
             break;
         case "ping":
-            receivedMessage.channel.send(`:ping_pong: Latency is **${Date.now() - receivedMessage.createdTimestamp}ms**. API Latency is **${Math.round(client.ws.ping)}ms**`);
+            receivedMessage.channel.send(`:ping_pong: Latency is `+
+                `**${Date.now() - receivedMessage.createdTimestamp}ms**. `+
+                `API Latency is **${Math.round(client.ws.ping)}ms**.`);
             break;
         case "prefix":
             receivedMessage.channel.send("The prefix is: `" + prefix + "`")
@@ -205,5 +207,5 @@ function help(arguments, receivedMessage) {
 // https://discordapp.com/developers/applications/
 // Application -> Bot -> Token
 
-client.login(auth.token)
-//client.login(process.env.BOT_TOKEN)
+//client.login(auth.token)
+client.login(process.env.BOT_TOKEN)
