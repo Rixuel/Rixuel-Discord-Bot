@@ -131,7 +131,7 @@ function processCommand(receivedMessage, thisPrefix) {
                 setTimeout(() => {
                     // Removes the user from the set after a minute
                     cooldown.delete(receivedMessage.author.id);
-                }, 0); // 3600000 = 1 hour
+                }, 3600000); // 3600000 = 1 hour
             }
             break;
         case "serverinfo":
