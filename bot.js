@@ -122,7 +122,7 @@ function processCommand(receivedMessage, thisPrefix) {
         case "rpgday":
         case "rd":
             if (cooldown.has(receivedMessage.author.id)) {
-                receivedMessage.channel.send("Wait 1 hour before getting typing this again, " + receivedMessage.author);
+                receivedMessage.channel.send("Wait 1 hour before getting typing this again, " + receivedMessage.author.username);
             } else {
                 RPGday.rpgday(arguments, receivedMessage);
 
