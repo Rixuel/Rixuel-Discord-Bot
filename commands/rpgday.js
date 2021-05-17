@@ -16,41 +16,37 @@ function rpgday(arguments, receivedMessage) {
         RPGDay.pet[Math.floor(Math.random() * RPGDay.pet.length)] + "\n" +
         RPGDay.pet[Math.floor(Math.random() * RPGDay.pet.length)] + "\n";
 
-    let arsenal = RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + " | " +
-        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + " | " +
-        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + " | " +
-        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + " | " +
-        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)];
+    let arsenal = "```ini\n[" + RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + "] [" +
+        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + "] [" +
+        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + "] [" +
+        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + "] [" +
+        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + "]```";
 
-    let skills = RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + " | " +
-        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + " | " +
-        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + " | " +
-        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + " | " +
-        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)];
+    let skills = "```yaml\n[" + RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + "] [" +
+        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + "] [" +
+        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + "] [" +
+        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + "] [" +
+        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + "]```";
 
-    let enemies = RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + " | " +
-        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + " | " +
-        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + " | " +
-        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + " | " +
-        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)];
+    let enemies = "```prolog\n" + RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
+        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
+        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
+        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
+        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + "```";
 
-    let edibles = RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " | " +
-        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " | " +
-        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " | " +
-        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " | " +
-        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)];
+    let edibles = "```haskell\n" + RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + ", " +
+        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + ", " +
+        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + ", " +
+        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + ", " +
+        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + "```";
 
-    let luckyLoots = RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
-        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
-        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
-        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
-        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)];
+    let luckyLoots = "```diff\n+ " + RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " + " +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " + " +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " +```";
 
-    let unluckyLoots = RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
-        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
-        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
-        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " | " +
-        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)];
+    let unluckyLoots = "```diff\n- " + RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " - " +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " - " +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " -```";
 
 
     embedRPGDayMessage = new Discord.MessageEmbed()
