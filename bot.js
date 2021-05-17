@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 const client = new Discord.Client({ ws: { intents: new Discord.Intents(Discord.Intents.ALL) }});
 const cooldown = new Set();
-var auth = require("./auth.json");
+//var auth = require("./auth.json");
 var AdminLord = require("./commands/adminlord.js");
 var Alias = require("./commands/alias.js");
 var Avatar = require("./commands/avatar.js");
@@ -208,5 +208,5 @@ function help(arguments, receivedMessage) {
 // https://discordapp.com/developers/applications/
 // Application -> Bot -> Token
 
-client.login(auth.token)
-//client.login(process.env.BOT_TOKEN)
+//client.login(auth.token)
+client.login(process.env.BOT_TOKEN)
