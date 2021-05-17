@@ -4,6 +4,7 @@ const cooldown = new Set();
 //var auth = require("./auth.json");
 var AdminLord = require("./commands/adminlord.js");
 var Alias = require("./commands/alias.js");
+var Avatar = require("./commands/avatar.js");
 var CountWords = require("./commands/countwords.js");
 var Cryptode = require("./commands/cryptode.js");
 var Drunk = require("./commands/drunk.js");
@@ -67,18 +68,7 @@ function processCommand(receivedMessage, thisPrefix) {
             receivedMessage.channel.send(webAttachment)
             break;
         case "avatar":
-            const userForAvatar = receivedMessage.mentions.users.first() || receivedMessage.author;
-
-            if ((arguments.length > 1) || (!receivedMessage.mentions.users.first() && (arguments.length == 1))) {
-                return
-            }
-
-            const avatarEmbed = new Discord.MessageEmbed()
-                .setColor('#000000')
-                .setAuthor(userForAvatar.username + "#" + userForAvatar.discriminator)
-                .setImage(userForAvatar.avatarURL({ format: 'png', dynamic: true, size: 1024 }))
-
-            receivedMessage.channel.send(avatarEmbed)
+            Avatar.avatar(arguments, receivedMessage)
             break;
         case "base64":
         case "b64":
