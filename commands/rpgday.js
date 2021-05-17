@@ -34,19 +34,19 @@ function rpgday(arguments, receivedMessage) {
         RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
         RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + "```";
 
-    let edibles = "```haskell\n" + RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + ", " +
-        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + ", " +
-        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + ", " +
-        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + ", " +
-        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + "```";
+    let edibles = "```diff\n+ " + RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " + " +
+        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " + " +
+        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " + " +
+        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " + " +
+        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " +```";
 
-    let luckyLoots = "```diff\n+ " + RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " + " +
-        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " + " +
-        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " +```";
+    let luckyLoots = RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + "\n" +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + "\n" +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + "\n";
 
-    let unluckyLoots = "```diff\n- " + RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " - " +
-        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " - " +
-        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + " -```";
+    let unluckyLoots = RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + "\n" +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + "\n" +
+        RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + "\n";
 
 
     embedRPGDayMessage = new Discord.MessageEmbed()
@@ -56,14 +56,14 @@ function rpgday(arguments, receivedMessage) {
         .setThumbnail(receivedMessage.author.avatarURL())
         .addField("Status", RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)], true)
         .addField("Zones", zones, true)
+        .addField("Lucky Loots", luckyLoots, true)
         .addField("Top 3 allies", topAllySigns, true)
         .addField("Top 3 pets", topPets, true)
+        .addField("Unlucky Loots", unluckyLoots, true)
         .addField("Arsenal", arsenal)
         .addField("Skills", skills)
         .addField("Enemies you will confront", enemies)
         .addField("Edibles you will obtain", edibles)
-        .addField("Lucky Loots", luckyLoots)
-        .addField("Unlucky Loots", unluckyLoots)
         .setFooter("Have a nice day!")
         .setTimestamp()
     //receivedMessage.channel.send("Status: " + RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)])
