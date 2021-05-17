@@ -1,11 +1,12 @@
 const Discord = require("discord.js")
 const client = new Discord.Client({ ws: { intents: new Discord.Intents(Discord.Intents.ALL) }});
 const cooldown = new Set();
-//var auth = require("./auth.json");
+var auth = require("./auth.json");
 var AdminLord = require("./commands/adminlord.js");
 var Alias = require("./commands/alias.js");
 var Avatar = require("./commands/avatar.js");
 var CountWords = require("./commands/countwords.js");
+var CountChars = require("./commands/countchars.js");
 var Cryptode = require("./commands/cryptode.js");
 var Drunk = require("./commands/drunk.js");
 var Fortune = require("./commands/fortune.js");
@@ -74,9 +75,17 @@ function processCommand(receivedMessage, thisPrefix) {
         case "b64":
             Cryptode.base64(prefix, arguments, receivedMessage)
             break;
+        case "binary":
+        case "bin":
+            Cryptode.binary(prefix, arguments, receivedMessage)
+            break;
         case "countwords":
         case "cw":
             CountWords.countwords(arguments, receivedMessage)
+            break;
+        case "countchars":
+        case "cc":
+            CountChars.countchars(arguments, receivedMessage)
             break;
         case "drunk":
         case "high":
@@ -173,6 +182,7 @@ function help(arguments, receivedMessage) {
         )
         .addField("Encoding",
         "`base64`, `b64` : Encoding\n" +
+        "`binary`, `bin` : Encoding\n" +
         "`hex` : Encoding\n"
         )
         .addField("Fun",
@@ -185,6 +195,7 @@ function help(arguments, receivedMessage) {
         "`wrong` : IGA throwing glass of wine\n"
         )
         .addField("Utility",
+        "`countchars`, `cc` : Counting characters (including space)\n" +
         "`countwords`, `cw` : Counting words\n" +
         "`note` : Note for yourself\n"
         )
@@ -197,5 +208,5 @@ function help(arguments, receivedMessage) {
 // https://discordapp.com/developers/applications/
 // Application -> Bot -> Token
 
-//client.login(auth.token)
-client.login(process.env.BOT_TOKEN)
+client.login(auth.token)
+//client.login(process.env.BOT_TOKEN)
