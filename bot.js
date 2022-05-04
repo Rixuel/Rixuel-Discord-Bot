@@ -22,8 +22,9 @@ client.on("ready", () => {
     console.log("Connected as " + client.user.tag)
 
     // Set bot status to: "Playing with JavaScript"
-    client.user.setActivity("Rixuel", {
-        type: "LISTENING"
+    client.user.setActivity("by Rixuel orders", {
+        type: "STREAMING",
+        url: "https://www.twitch.tv/LordRixuel"
     })
 
     // List servers the bot is connected to
