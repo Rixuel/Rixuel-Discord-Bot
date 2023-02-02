@@ -210,4 +210,4 @@ function help(arguments, receivedMessage) {
 // Application -> Bot -> Token
 
 //client.login(auth.token)
-client.login(process.env.BOT_TOKEN)
+//client.login(process.env.BOT_TOKEN)
