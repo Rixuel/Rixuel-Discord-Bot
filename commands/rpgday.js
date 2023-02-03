@@ -24,10 +24,10 @@ function rpgday(arguments, receivedMessage) {
         RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
         RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
         RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
+        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
         RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + "```";
 
     let edibles = "```diff\n+ " + RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " + " +
-        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " + " +
         RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " + " +
         RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " + " +
         RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " +```";
