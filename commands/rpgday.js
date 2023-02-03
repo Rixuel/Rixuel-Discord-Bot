@@ -22,14 +22,9 @@ function rpgday(arguments, receivedMessage) {
 
     let enemies = "```prolog\n" + RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
         RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
-        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
-        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
-        RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
         RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + "```";
 
     let edibles = "```diff\n+ " + RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " + " +
-        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " + " +
-        RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " + " +
         RPGDay.edible[Math.floor(Math.random() * RPGDay.edible.length)] + " +```";
 
     let luckyLoots = RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + "\n" +
