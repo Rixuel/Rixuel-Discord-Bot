@@ -8,9 +8,7 @@ function rpgday(arguments, receivedMessage) {
         RPGDay.zone[Math.floor(Math.random() * RPGDay.zone.length)] + "\n" +
         RPGDay.zone[Math.floor(Math.random() * RPGDay.zone.length)] + "\n";
 
-    let topAllySigns = RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)] + "\n" +
-        RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)] + "\n" +
-        RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)] + "\n";
+    let topAllySigns = RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)] + "\n";
 
     let topPets = RPGDay.pet[Math.floor(Math.random() * RPGDay.pet.length)] + "\n" +
         RPGDay.pet[Math.floor(Math.random() * RPGDay.pet.length)] + "\n" +
@@ -18,13 +16,9 @@ function rpgday(arguments, receivedMessage) {
 
     let arsenal = "```ini\n[" + RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + "] [" +
         RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + "] [" +
-        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + "] [" +
-        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + "] [" +
         RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + "]```";
 
     let skills = "```yaml\n[" + RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + "] [" +
-        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + "] [" +
-        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + "] [" +
         RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + "] [" +
         RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + "]```";
 
@@ -56,7 +50,7 @@ function rpgday(arguments, receivedMessage) {
         .setThumbnail(receivedMessage.author.avatarURL())
         .addField("Status", RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)], true)
         .addField("Zones", zones, true)
-        .addField("Top 3 allies", topAllySigns, true)
+        .addField("Top ally", topAllySigns, true)
         .addField("Top 3 pets", topPets, true)
         .addField("Lucky Loots", luckyLoots, true)
         .addField("Unlucky Loots", unluckyLoots, true)
