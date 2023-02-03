@@ -15,11 +15,9 @@ function rpgday(arguments, receivedMessage) {
         RPGDay.pet[Math.floor(Math.random() * RPGDay.pet.length)] + "\n";
 
     let arsenal = "```ini\n[" + RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + "] [" +
-        RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + "] [" +
         RPGDay.arsenal[Math.floor(Math.random() * RPGDay.arsenal.length)] + "]```";
 
     let skills = "```yaml\n[" + RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + "] [" +
-        RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + "] [" +
         RPGDay.skill[Math.floor(Math.random() * RPGDay.skill.length)] + "]```";
 
     let enemies = "```prolog\n" + RPGDay.enemy[Math.floor(Math.random() * RPGDay.enemy.length)] + ", " +
