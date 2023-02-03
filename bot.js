@@ -95,9 +95,6 @@ function processCommand(receivedMessage, thisPrefix) {
         case "fortune":
             Fortune.fortune(prefix, arguments, receivedMessage)
             break;
-        case "flora":
-            receivedMessage.channel.send("Yep, that's me")
-            break;
         case "hex":
             Cryptode.hex(prefix, arguments, receivedMessage)
             break;
@@ -116,7 +113,7 @@ function processCommand(receivedMessage, thisPrefix) {
             receivedMessage.channel.send("The prefix is: `" + prefix + "`")
             break;
         case "rixuel":
-            receivedMessage.channel.send("Our lord and savior :3")
+            receivedMessage.channel.send("Our hero :3")
             break;
         case "roll":
             Roll.roll(prefix, arguments, receivedMessage)
