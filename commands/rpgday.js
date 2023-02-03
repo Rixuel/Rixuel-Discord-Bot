@@ -39,7 +39,7 @@ function rpgday(arguments, receivedMessage) {
     embedRPGDayMessage = new Discord.MessageEmbed()
         .setColor("#44DD00")
         .setTitle("Your RPG Day today")
-        .setDescription("```fix\nUser: " + receivedMessage.author.username + "```")
+        .setDescription("```fix\nPlayer: " + receivedMessage.author.username + "```")
         .setThumbnail(receivedMessage.author.avatarURL())
         .addField("Status", RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)], true)
         .addField("Zones", zones, true)
