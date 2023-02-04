@@ -9,9 +9,9 @@
     "author": "Rixuel Neoliv",
     "dependencies": {
         "discord.js": "^12.5.3",
-        "jsonschema": "^1.4.0",
+        "jsonschema": "^1.4.1",
         "lodash": "^4.17.21",
         "request": "^2.88.2",
-        "winston": "^3.2.1"
+        "winston": "^3.8.2"
     }
 }
