@@ -104,6 +104,30 @@ function hex(prefix, arguments, receivedMessage) {
     }
 }
 
+// Rotate by X places
+function rot(prefix, arguments, receivedMessage) {
+    var str = "";
+    let rotNum = 0;
+    const alpha = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    if ((arguments[0] > 0 && arguments[0] < 26) && (arguments.length > 1)) {
+        rotNum = parseInt(arguments[0]);
+        //console.log("arguments[0]: " + arguments[0]);
+        //console.log("rotNum: " + rotNum);
+
+        for (var i = 1; i < arguments.length; i++) {
+            str += arguments[i];
+            if (i < arguments.length - 1) {
+                str += " ";
+            }
+        }
+        receivedMessage.channel.send(str.replace(/[a-z]/gi, letter => alpha[alpha.indexOf(letter) + rotNum]))
+    } else {
+        receivedMessage.channel.send("Please use `" + prefix + "rot <num> <text>` where `<num>` is a number from 1 to 25")
+    }
+}
+
 module.exports.base64 = base64;
 module.exports.binary = binary;
 module.exports.hex = hex;
+module.exports.rot = rot;

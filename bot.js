@@ -145,6 +145,9 @@ function processCommand(receivedMessage, thisPrefix) {
                 }, 3600000); // 3600000 = 1 hour
             }
             break;
+        case "rot":
+            Cryptode.rot(prefix, arguments, receivedMessage)
+            break;
         case "say":
             let sayStr = receivedMessage.content
             if (arguments.length == 0) {
@@ -207,7 +210,8 @@ function help(arguments, receivedMessage) {
                 value: 
                 "`base64`, `b64` : Encoding\n" +
                 "`binary`, `bin` : Encoding\n" +
-                "`hex` : Encoding\n"
+                "`hex` : Encoding\n" +
+                "`rot` : Substitution cipher\n"
             },
             { 
                 name: "Fun", 
