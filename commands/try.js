@@ -1,5 +1,4 @@
-const Discord = require("discord.js")
-const client = new Discord.Client()
+const { ActionRowBuilder, Events, ModalBuilder, TextInputBuilder, TextInputStyle } = require("discord.js")
 
 function tryCommands(arguments, receivedMessage) {
     receivedMessage.channel.send("Try commands")

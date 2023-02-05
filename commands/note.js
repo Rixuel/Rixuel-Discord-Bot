@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 function note(prefix, arguments, receivedMessage) {
     var str = "";
@@ -12,14 +12,14 @@ function note(prefix, arguments, receivedMessage) {
             }
         }
 
-        embedDirectMessage = new Discord.MessageEmbed()
+        embedDirectMessage = new EmbedBuilder()
             .setColor("#44DD00")
             .setTitle("Discord Note")
             .setDescription(str)
             .setTimestamp()
-            .setFooter("The human whose name is written in this note shall be discorded.");
+            .setFooter({ text: "The human whose name is written in this note shall be discorded." });
 
-        receivedMessage.author.send(embedDirectMessage)
+        receivedMessage.author.send({ embeds : [embedDirectMessage] })
     } else {
         receivedMessage.channel.send("Please use `" + prefix + "note <text>`")
     }

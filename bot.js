@@ -1,7 +1,17 @@
-const Discord = require("discord.js")
-const client = new Discord.Client({ ws: { intents: new Discord.Intents(Discord.Intents.ALL) }});
+const { Client, EmbedBuilder, Events, GatewayIntentBits } = require("discord.js")
+const client = new Client({ 
+    intents: [
+        GatewayIntentBits.DirectMessages,
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildPresences,
+        GatewayIntentBits.MessageContent
+    ]
+});
 const cooldown = new Set();
-//var auth = require("./auth.json");
+//const { token } = require("./auth.json");
+
 var AdminLord = require("./commands/adminlord.js");
 var Alias = require("./commands/alias.js");
 var Avatar = require("./commands/avatar.js");
@@ -18,23 +28,26 @@ var UserInfo = require("./commands/userinfo.js");
 var tryCMD = require("./commands/try.js");
 var prefix = "c!";
 
-client.on("ready", () => {
-    console.log("Connected as " + client.user.tag)
+client.once(Events.ClientReady, c => {
+	console.log(`Connected as ${c.user.tag}`);
 
-    // Set bot status to: "Playing with JavaScript"
-    client.user.setActivity("by Rixuel orders", {
-        type: "STREAMING",
-        url: "https://www.twitch.tv/LordRixuel"
-    })
+    // Bot status Type: Playing=0, Streaming=1, Listening=2, Watching=3, Custom=4, Competing=5
+    client.user.setPresence({ 
+        activities: [{ 
+            name: "by Rixuel orders", 
+            type: 1,
+            url: "https://www.twitch.tv/LordRixuel"
+        }] 
+    });
 
     // List servers the bot is connected to
     console.log("Servers:")
     client.guilds.cache.forEach((guild) => {
         console.log("-- " + guild.name)
     })
-})
+});
 
-client.on("message", (receivedMessage) => {
+client.on(Events.MessageCreate, async receivedMessage => {
     const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
     const thisPrefix = receivedMessage.content.match(prefixMention) ? receivedMessage.content.match(prefixMention)[0] : prefix;
 
@@ -66,8 +79,7 @@ function processCommand(receivedMessage, thisPrefix) {
             Alias.alias(prefix, arguments, receivedMessage)
             break;
         case "alterna":
-            const webAttachment = new Discord.MessageAttachment("https://alternaland.github.io/img/alternalogo.png")
-            receivedMessage.channel.send(webAttachment)
+            receivedMessage.channel.send({ files: [{ attachment: 'https://alternaland.github.io/img/alternalogo.png' }] })
             break;
         case "avatar":
             Avatar.avatar(arguments, receivedMessage)
@@ -113,7 +125,7 @@ function processCommand(receivedMessage, thisPrefix) {
             receivedMessage.channel.send("The prefix is: `" + prefix + "`")
             break;
         case "rixuel":
-            receivedMessage.channel.send("Our hero :3")
+            receivedMessage.channel.send({ content: "The creator" })
             break;
         case "roll":
             Roll.roll(prefix, arguments, receivedMessage)
@@ -133,21 +145,29 @@ function processCommand(receivedMessage, thisPrefix) {
                 }, 3600000); // 3600000 = 1 hour
             }
             break;
+        case "say":
+            let sayStr = receivedMessage.content
+            if (arguments.length == 0) {
+                receivedMessage.channel.send("Please use `" + prefix + "say <text>`")
+                return
+            } else {
+                receivedMessage.channel.send(sayStr.replace(prefix + "say", ""))
+                receivedMessage.delete()
+            }
+            break;
         case "serverinfo":
         case "si":
             ServerInfo.serverinfo(arguments, receivedMessage)
             break;
         case "shame":
-            const shameAttachment = new Discord.MessageAttachment("https://i.imgur.com/TVm8XCy.jpg")
-            receivedMessage.channel.send(shameAttachment)
+            receivedMessage.channel.send({ files: [{ attachment: 'https://i.imgur.com/TVm8XCy.jpg' }] })
             break;
         case "userinfo":
         case "ui":
             UserInfo.userinfo(arguments, receivedMessage)
             break;
         case "wrong":
-            const wrongAttachment = new Discord.MessageAttachment("https://media.giphy.com/media/L4aGJ659bvSRtw07RZ/giphy.gif")
-            receivedMessage.channel.send(wrongAttachment)
+            receivedMessage.channel.send({ files: [{ attachment: 'https://media.giphy.com/media/L4aGJ659bvSRtw07RZ/giphy.gif' }] })
             break;
         case "troll":
             receivedMessage.channel.send("<Troll message here>")
@@ -167,44 +187,55 @@ function processCommand(receivedMessage, thisPrefix) {
 }
 
 function help(arguments, receivedMessage) {
-    let embedHelpMessage = new Discord.MessageEmbed()
+    let embedHelpMessage = new EmbedBuilder()
         .setColor("#DFDAD0")
         .setTitle("List of Commands")
         .setDescription("Prefix : `" + prefix + "`")
-        .addField("Basic",
-        "`avatar` : Get user avatar\n" +
-        "`ping` : Pong!\n" +
-        "`prefix` : Bot's prefix\n" +
-        "`serverinfo`, `si` : Server information\n" +
-        "`userinfo`, `ui` : User information\n"
-        )
-        .addField("Encoding",
-        "`base64`, `b64` : Encoding\n" +
-        "`binary`, `bin` : Encoding\n" +
-        "`hex` : Encoding\n"
-        )
-        .addField("Fun",
-        "`alias`, `ag` : Alias name generator\n" +
-        "`drunk`, `high` : Bot is drunk or high and makes no sense\n" +
-        "`fortune` : Imitation of Fortune UNIX Command\n" +
-        "`roll` : Roll a dice or between a range of numbers\n" +
-        "`rpgday`, `rd` : Check your RPG Day\n" +
-        "`shame` : Game of Thrones Shame\n" +
-        "`wrong` : IGA throwing glass of wine\n"
-        )
-        .addField("Utility",
-        "`countchars`, `cc` : Counting characters (including space)\n" +
-        "`countwords`, `cw` : Counting words\n" +
-        "`note` : Note for yourself\n"
-        )
+        .addFields([
+            { 
+                name: "Basic", 
+                value: 
+                "`avatar` : Get user avatar\n" +
+                "`ping` : Pong!\n" +
+                "`prefix` : Bot's prefix\n" +
+                "`say` : Tell the bot what to say\n" +
+                "`serverinfo`, `si` : Server information\n" +
+                "`userinfo`, `ui` : User information\n"
+            },
+            { 
+                name: "Encoding", 
+                value: 
+                "`base64`, `b64` : Encoding\n" +
+                "`binary`, `bin` : Encoding\n" +
+                "`hex` : Encoding\n"
+            },
+            { 
+                name: "Fun", 
+                value: 
+                "`alias`, `ag` : Alias name generator\n" +
+                "`drunk`, `high` : Bot is drunk or high and makes no sense\n" +
+                "`fortune` : Imitation of Fortune UNIX Command\n" +
+                "`roll` : Roll a dice or between a range of numbers\n" +
+                "`rpgday`, `rd` : Check your RPG Day\n" +
+                "`shame` : Game of Thrones Shame\n" +
+                "`wrong` : IGA throwing glass of wine\n"
+            },
+            { 
+                name: "Utility", 
+                value: 
+                "`countchars`, `cc` : Counting characters (including space)\n" +
+                "`countwords`, `cw` : Counting words\n" +
+                "`note` : Note for yourself\n"
+            }
+        ])
         .setTimestamp()
-        .setFooter("Bot made by Rixuel");
+        .setFooter({ text: "Bot made by Rixuel" });
 
-    receivedMessage.channel.send(embedHelpMessage)
+    receivedMessage.channel.send({ embeds : [embedHelpMessage] })
 }
 
 // https://discordapp.com/developers/applications/
 // Application -> Bot -> Token
 
-//client.login(auth.token)
+//client.login(token)
 client.login(process.env.TOKEN)

@@ -40,62 +40,73 @@ var Wisdom = require("./fortune/wisdom.json");
 var Work = require("./fortune/work.json");
 var Zippy = require("./fortune/zippy.json");
 // Fortune data by github.com/shlomif
-const Discord = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 function fortune(prefix, arguments, receivedMessage) {
     let fortuneMessage = "";
-    let fortuneHelpMessage = new Discord.MessageEmbed()
+    let fortuneHelpMessage = new EmbedBuilder()
         .setColor("#FF5500")
         .setTitle("Fortune Help Message")
         .setDescription("Please use `" + prefix + "fortune` or `" + prefix + "fortune <category>`\n")
-        .addField("<category>",
-        "`art`\n" +
-        "`computers`\n" +
-        "`cookie`\n" +
-        "`debian`\n" +
-        "`definitions`\n" +
-        "`disclaimer`\n" +
-        "`drugs`\n" +
-        "`education`\n" +
-        "`ethnic`\n" +
-        "`food`\n" +
-        "`fortunes`\n" +
-        "`goedel`\n" +
-        "`humorists`\n" +
-        "`kids`\n",
-        true)
-        .addField("<category>",
-        "`knghtbrd`\n" +
-        "`law`\n" +
-        "`linux`\n" +
-        "`linuxcookie`\n" +
-        "`literature`\n" +
-        "`love`\n" +
-        "`magic`\n" +
-        "`medicine`\n" +
-        "`men-women`\n" +
-        "`misc`\n" +
-        "`news`\n" +
-        "`paradoxum`\n" +
-        "`people`\n" +
-        "`perl`\n",
-        true)
-        .addField("<category>",
-        "`pets`\n" +
-        "`platitudes`\n" +
-        "`politics`\n" +
-        "`riddles`\n" +
-        "`science`\n" +
-        "`songs-poems`\n" +
-        "`sports`\n" +
-        "`startrek`\n" +
-        "`tao`\n" +
-        "`translate-me`\n" +
-        "`wisdom`\n" +
-        "`work`\n" +
-        "`zippy`\n",
-        true)
-        .setFooter("Fortune data by github.com/shlomif")
+        .addFields([
+            {
+                name: "<category>",
+                value:
+                "`art`\n" +
+                "`computers`\n" +
+                "`cookie`\n" +
+                "`debian`\n" +
+                "`definitions`\n" +
+                "`disclaimer`\n" +
+                "`drugs`\n" +
+                "`education`\n" +
+                "`ethnic`\n" +
+                "`food`\n" +
+                "`fortunes`\n" +
+                "`goedel`\n" +
+                "`humorists`\n" +
+                "`kids`\n",
+                inline: true
+            },
+            {
+                name: "<category>",
+                value:
+                "`knghtbrd`\n" +
+                "`law`\n" +
+                "`linux`\n" +
+                "`linuxcookie`\n" +
+                "`literature`\n" +
+                "`love`\n" +
+                "`magic`\n" +
+                "`medicine`\n" +
+                "`men-women`\n" +
+                "`misc`\n" +
+                "`news`\n" +
+                "`paradoxum`\n" +
+                "`people`\n" +
+                "`perl`\n",
+                inline: true
+            },
+            {
+                name: "<category>",
+                value: 
+                "`pets`\n" +
+                "`platitudes`\n" +
+                "`politics`\n" +
+                "`riddles`\n" +
+                "`science`\n" +
+                "`songs-poems`\n" +
+                "`sports`\n" +
+                "`startrek`\n" +
+                "`tao`\n" +
+                "`translate-me`\n" +
+                "`wisdom`\n" +
+                "`work`\n" +
+                "`zippy`\n",
+                inline: true
+            }
+        ])
+        .setFooter({ text: "Fortune data by github.com/shlomif" })
 
     const fortuneObject = {
         "art": Art.art,
@@ -143,17 +154,17 @@ function fortune(prefix, arguments, receivedMessage) {
 
     if (arguments.length==0) {
         fortuneMessage = randomFortunes(fortuneObject);
-        receivedMessage.channel.send(fortuneMessage)
+        receivedMessage.channel.send({ embeds : [fortuneMessage] })
     }
     else if (arguments.length==1 && fortuneObject[arguments[0].toLowerCase()]) {
-        fortuneMessage = new Discord.MessageEmbed()
+        fortuneMessage = new EmbedBuilder()
         .setColor("#FFAA00")
         .setTitle("Category: " + arguments[0].toUpperCase())
         .setDescription("```" + resultFortunes(fortuneObject[arguments[0].toLowerCase()]) + "```")
-        receivedMessage.channel.send(fortuneMessage)
+        receivedMessage.channel.send({ embeds : [fortuneMessage] })
     }
     else {
-        receivedMessage.channel.send(fortuneHelpMessage);
+        receivedMessage.channel.send({ embeds : [fortuneHelpMessage] });
     }
 }
 
@@ -204,7 +215,7 @@ function randomFortunes(fortuneObject) {
     ];
     let randomNum = Math.floor(Math.random() * randomArray.length);
 
-    randomMessage = new Discord.MessageEmbed()
+    randomMessage = new EmbedBuilder()
     .setColor("#FFAA00")
     .setTitle("Category: " + randomArray[randomNum].toUpperCase())
     .setDescription("```" + resultFortunes(fortuneObject[randomArray[randomNum]]) + "```")

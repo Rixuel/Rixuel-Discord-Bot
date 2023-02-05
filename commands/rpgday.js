@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 var RPGDay = require("./rpgday.json");
 
 function rpgday(arguments, receivedMessage) {
@@ -36,26 +36,64 @@ function rpgday(arguments, receivedMessage) {
         RPGDay.loot[Math.floor(Math.random() * RPGDay.loot.length)] + "\n";
 
 
-    embedRPGDayMessage = new Discord.MessageEmbed()
+    embedRPGDayMessage = new EmbedBuilder()
         .setColor("#44DD00")
         .setTitle("Your RPG Day today")
-        .setDescription("```fix\nPlayer: " + receivedMessage.author.username + "```")
-        .setThumbnail(receivedMessage.author.avatarURL())
-        .addField("Status", RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)], true)
-        .addField("Zones", zones, true)
-        .addField("Top ally", topAllySigns, true)
-        .addField("Top 3 pets", topPets, true)
-        .addField("Lucky Loots", luckyLoots, true)
-        .addField("Unlucky Loots", unluckyLoots, true)
-        .addField("Arsenal", arsenal)
-        .addField("Skills", skills)
-        .addField("Enemies you will confront", enemies)
-        .addField("Edibles you will obtain", edibles)
-        .setFooter("Have a nice day!")
+        .setDescription("```diff\n- Player: " + receivedMessage.author.username + " -```")
+        .setThumbnail(receivedMessage.author.displayAvatarURL())
+        .addFields([
+            {
+                name: "Status",
+                value: RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)],
+                inline: true
+            },
+            {
+                name: "Zones",
+                value: zones,
+                inline: true
+            },
+            {
+                name: "Top ally",
+                value: topAllySigns,
+                inline: true
+            },
+            {
+                name: "Top 3 pets",
+                value: topPets,
+                inline: true
+            },
+            {
+                name: "Lucky Loots",
+                value: luckyLoots,
+                inline: true
+            },
+            {
+                name: "Unlucky Loots",
+                value: unluckyLoots,
+                inline: true
+            },
+            {
+                name: "Arsenal",
+                value: arsenal
+            },
+            {
+                name: "Skills",
+                value: skills
+            },
+            {
+                name: "Enemies you will confront",
+                value: enemies
+            },
+            {
+                name: "Edibles you will obtain",
+                value: edibles
+            },
+        ])
+        .setFooter({ text: "Have a nice day!" })
         .setTimestamp()
     //receivedMessage.channel.send("Status: " + RPGDay.status[Math.floor(Math.random() * RPGDay.status.length)])
     //receivedMessage.channel.send("Sign: " + RPGDay.astrology[Math.floor(Math.random() * RPGDay.astrology.length)])
-    receivedMessage.channel.send(embedRPGDayMessage)
+    receivedMessage.channel.send({ embeds : [embedRPGDayMessage] })
 }
 
 module.exports.rpgday = rpgday;

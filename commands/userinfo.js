@@ -1,32 +1,43 @@
-const Discord = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
-function userinfo(arguments, receivedMessage) {
+async function userinfo(arguments, receivedMessage) {
     const theUser = receivedMessage.mentions.users.first() || receivedMessage.author;
+    const member = await receivedMessage.guild.members.fetch(theUser.id);
 
-    let activities = theUser.presence.activities.toString();
-    // MessageEmbed doesn't allow empty value
-    if (activities == "") {
-        activities = "None";
-    }
-
-    const embed = new Discord.MessageEmbed()
+    const embed = new EmbedBuilder()
         .setColor("#44DD00")
         .setTitle(receivedMessage.guild.members.cache.get(theUser.id).displayName)
         .setDescription(`**${theUser.username}**#${theUser.discriminator}`)
-        .setThumbnail(theUser.avatarURL())
-        .addField("Status", String(theUser.presence.status).toUpperCase(), true)
-        .addField("Activities", `${activities}`, true)
-        .addField("Roles: \n", `[ ${receivedMessage.guild.member(theUser).roles.cache.map(r => `${r}`).join(' | ')} ]`)
-        .addField("Joined Discord: \n", theUser.createdAt.toUTCString())
-        .addField("Joined Server: \n", receivedMessage.guild.member(theUser).joinedAt.toUTCString())
-        .setFooter(theUser.id)
+        .setThumbnail(theUser.displayAvatarURL())
+        .addFields([
+            {
+                name: "Roles",
+                value: `[ ${member.roles.cache.map(r => `${r}`).join(' | ')} ]`,
+                inline: false
+            },
+            {
+                name: "Joined Server",
+                value: 
+                `<t:${parseInt(member.joinedAt / 1000)}:F> ` + 
+                `[<t:${parseInt(member.joinedAt / 1000)}:R>]`,
+                inline: false
+            },
+            {
+                name: "Joined Discord",
+                value: 
+                `<t:${parseInt(theUser.createdAt / 1000)}:F> ` +
+                `[<t:${parseInt(theUser.createdAt / 1000)}:R>]`,
+                inline: false
+            }
+        ])
+        .setFooter({ text: theUser.id })
         .setTimestamp()
 
     if ((arguments.length > 1) || (!receivedMessage.mentions.users.first() && (arguments.length == 1))) {
         return
     }
 
-    receivedMessage.channel.send(embed)
+    receivedMessage.channel.send({ embeds : [embed] })
 }
 
 module.exports.userinfo = userinfo;

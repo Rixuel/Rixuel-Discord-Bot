@@ -1,23 +1,21 @@
-const Discord = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 function directmessage(prefix, arguments, receivedMessage) {
     const getSpecificUser = receivedMessage.mentions.users.first(); // || receivedMessage.author;
-    var embedDirectMessage = "";
-    var str = "";
+    let str = "";
+    
+    //console.log("arguments.length: " + arguments.length);
+    //console.log("arguments[0]: " + arguments[0]);
+    //console.log("receivedMessage.author : " + receivedMessage.author)
+    //console.log("getSpecificUser: " + getSpecificUser + " = " + arguments[0])
 
-    if (!receivedMessage.mentions.users.first()) return;
-
-    console.log("receivedMessage.author : " + receivedMessage.author)
-    console.log("getSpecificUser: " + getSpecificUser + " = " + arguments[0])
-    console.log("getSpecificUser.id: " + getSpecificUser.id)
-
-    if (receivedMessage.author.id != "216440326796214274") {
-        receivedMessage.channel.send("Only Rixuel can give me this command >:D")
+    if (arguments.length < 2 || arguments[0].slice(2, -1) != getSpecificUser) {
+        receivedMessage.channel.send("Please use `" + prefix + "dm @user <text>`")
         return
     }
 
-    if (arguments.length < 2) {
-        receivedMessage.channel.send("Please use `" + prefix + "dm @user <text>`")
+    if (receivedMessage.author.id != "216440326796214274") {
+        receivedMessage.channel.send("Only Rixuel can give me this command >:D")
         return
     }
 
@@ -28,16 +26,16 @@ function directmessage(prefix, arguments, receivedMessage) {
         }
     }
 
-    embedDirectMessage = new Discord.MessageEmbed()
+    const embedDirectMessage = new EmbedBuilder()
         .setColor("#CCCC00")
         .setTitle("Message")
         .setDescription(str)
-        .setFooter("This is a bot message. Don't reply back.");
+        .setFooter({ text: "This is a bot message. Don't reply back." });
 
     //console.log("str: " + str)
 
-    getSpecificUser.send(embedDirectMessage).catch(function() {
-        receivedMessage.channel.send("Wait... Message is not delivered because you can't direct message a bot :(")
+    getSpecificUser.send({ embeds : [embedDirectMessage] }).catch(function() {
+        receivedMessage.channel.send("Wait... Message is not delivered because you can't direct message a bot o.o")
         return
     });
 
@@ -48,14 +46,14 @@ function getid(prefix, arguments, receivedMessage) {
     const getSpecificUser = receivedMessage.mentions.users.first();
     let privateMessage = "";
 
-    if (!receivedMessage.mentions.users.first()) return;
-
     if (receivedMessage.author.id != "216440326796214274") {
         receivedMessage.channel.send("Only Rixuel can give me this command >:D")
         return
     }
 
-    if (arguments.length != 1) {
+    //console.log("arguments: " + arguments);
+    //console.log("arguments.length: " + arguments.length);
+    if (arguments.length != 1 || !getSpecificUser) {
         receivedMessage.channel.send("Please use `" + prefix + "getid @user`")
         return
     }

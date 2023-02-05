@@ -8,7 +8,7 @@
     },
     "author": "Rixuel Neoliv",
     "dependencies": {
-        "discord.js": "^12.5.3",
+        "discord.js": "^14.7.1",
         "jsonschema": "^1.4.1",
         "lodash": "^4.17.21",
         "request": "^2.88.2",

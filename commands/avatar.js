@@ -1,14 +1,17 @@
-const Discord = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 function avatar(arguments, receivedMessage) {
     const userForAvatar = receivedMessage.mentions.users.first() || receivedMessage.author;
+    const displayUserAvatar = userForAvatar.displayAvatarURL({ dynamic: true, size: 1024, extension: 'png' })
+    //console.log("userForAvatar= " + userForAvatar)
+    //console.log("displayUserAvatar= " + displayUserAvatar)
 
-    const avatarEmbed = new Discord.MessageEmbed()
+    const avatarEmbed = new EmbedBuilder()
         .setColor('#000000')
-        .setAuthor(userForAvatar.username + "#" + userForAvatar.discriminator)
-        .setImage(userForAvatar.avatarURL({ format: 'png', dynamic: true, size: 1024 }))
+        .setAuthor({ name: userForAvatar.tag })
+        .setImage(displayUserAvatar)
 
-    receivedMessage.channel.send(avatarEmbed)
+    receivedMessage.channel.send({ embeds : [avatarEmbed] })
 }
 
 module.exports.avatar = avatar;
