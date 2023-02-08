@@ -1,9 +1,7 @@
-const { ActionRowBuilder, Events, ModalBuilder, TextInputBuilder, TextInputStyle } = require("discord.js")
 const https = require("https")
 
-function tryCommands(arguments, receivedMessage) {
-    receivedMessage.channel.send("Try commands")
-    /*
+function uselessfacts(arguments, receivedMessage) {
+
     let url = `https://uselessfacts.jsph.pl/random.json?language=en`;
 
     https.get(url,(response) => {
@@ -18,8 +16,8 @@ function tryCommands(arguments, receivedMessage) {
                 let json = JSON.parse(body);
                 // do something with JSON
                 //console.log(json);
-                receivedMessage.channel.send(json.text)
-                console.log(json.text);
+                //console.log(json.text);
+                receivedMessage.channel.send(json.text);
                 
             } catch (error) {
                 console.error(error.message);
@@ -29,7 +27,6 @@ function tryCommands(arguments, receivedMessage) {
     }).on("error", (error) => {
         console.error(error.message);
     });
-    */
 }
 
-module.exports.tryCommands = tryCommands; // export your function
+module.exports.uselessfacts = uselessfacts; // export your function

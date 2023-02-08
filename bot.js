@@ -13,8 +13,10 @@ const cooldown = new Set();
 //const { token } = require("./auth.json");
 
 var AdminLord = require("./commands/adminlord.js");
+var Advice = require("./commands/advice.js");
 var Alias = require("./commands/alias.js");
 var Avatar = require("./commands/avatar.js");
+var Bored = require("./commands/bored.js");
 var CountWords = require("./commands/countwords.js");
 var CountChars = require("./commands/countchars.js");
 var Cryptode = require("./commands/cryptode.js");
@@ -24,7 +26,10 @@ var Note = require("./commands/note.js");
 var Roll = require("./commands/roll.js");
 var RPGday = require("./commands/rpgday.js");
 var ServerInfo = require("./commands/serverinfo.js");
+var Techy = require("./commands/techy.js");
+var UselessFacts = require("./commands/uselessfacts.js");
 var UserInfo = require("./commands/userinfo.js");
+var Xkcd = require("./commands/xkcd.js");
 var tryCMD = require("./commands/try.js");
 var prefix = "c!";
 
@@ -74,6 +79,9 @@ function processCommand(receivedMessage, thisPrefix) {
         case "help":
             help(arguments, receivedMessage)
             break;
+        case "advice":
+            Advice.advice(arguments, receivedMessage)
+            break
         case "alias":
         case "ag":
             Alias.alias(prefix, arguments, receivedMessage)
@@ -91,6 +99,9 @@ function processCommand(receivedMessage, thisPrefix) {
         case "binary":
         case "bin":
             Cryptode.binary(prefix, arguments, receivedMessage)
+            break;
+        case "bored":
+            Bored.bored(arguments, receivedMessage)
             break;
         case "countwords":
         case "cw":
@@ -165,6 +176,13 @@ function processCommand(receivedMessage, thisPrefix) {
         case "shame":
             receivedMessage.channel.send({ files: [{ attachment: 'https://i.imgur.com/TVm8XCy.jpg' }] })
             break;
+        case "techy":
+            Techy.techy(arguments, receivedMessage)
+            break;
+        case "uselessfacts":
+        case "uf":
+            UselessFacts.uselessfacts(arguments, receivedMessage)
+            break;
         case "userinfo":
         case "ui":
             UserInfo.userinfo(arguments, receivedMessage)
@@ -174,6 +192,9 @@ function processCommand(receivedMessage, thisPrefix) {
             break;
         case "troll":
             receivedMessage.channel.send("<Troll message here>")
+            break;
+        case "xkcd":
+            Xkcd.xkcd(arguments, receivedMessage)
             break;
         case "dm":
             AdminLord.directmessage(prefix, arguments, receivedMessage)
@@ -203,7 +224,8 @@ function help(arguments, receivedMessage) {
                 "`prefix` : Bot's prefix\n" +
                 "`say` : Tell the bot what to say\n" +
                 "`serverinfo`, `si` : Server information\n" +
-                "`userinfo`, `ui` : User information\n"
+                "`userinfo`, `ui` : User information\n",
+                inline: true
             },
             { 
                 name: "Encoding", 
@@ -211,7 +233,8 @@ function help(arguments, receivedMessage) {
                 "`base64`, `b64` : Encoding\n" +
                 "`binary`, `bin` : Encoding\n" +
                 "`hex` : Encoding\n" +
-                "`rot` : Substitution cipher\n"
+                "`rot` : Substitution cipher\n",
+                inline: true
             },
             { 
                 name: "Fun", 
@@ -222,7 +245,8 @@ function help(arguments, receivedMessage) {
                 "`roll` : Roll a dice or between a range of numbers\n" +
                 "`rpgday`, `rd` : Check your RPG Day\n" +
                 "`shame` : Game of Thrones Shame\n" +
-                "`wrong` : IGA throwing glass of wine\n"
+                "`wrong` : IGA throwing glass of wine\n",
+                inline: false
             },
             { 
                 name: "Utility", 
@@ -230,6 +254,15 @@ function help(arguments, receivedMessage) {
                 "`countchars`, `cc` : Counting characters (including space)\n" +
                 "`countwords`, `cw` : Counting words\n" +
                 "`note` : Note for yourself\n"
+            },
+            { 
+                name: "Random", 
+                value: 
+                "`advice` : Generate random advice slips\n" +
+                "`bored` : Random activities to fight boredom\n" +
+                "`techy` : Tech-savvy sounding phrases\n" +
+                "`uselessfacts`, `uf` : Get useless, but true facts\n" +
+                "`xkcd` : xkcd comics\n"
             }
         ])
         .setTimestamp()

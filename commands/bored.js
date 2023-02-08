@@ -1,10 +1,8 @@
-const { ActionRowBuilder, Events, ModalBuilder, TextInputBuilder, TextInputStyle } = require("discord.js")
 const https = require("https")
 
-function tryCommands(arguments, receivedMessage) {
-    receivedMessage.channel.send("Try commands")
-    /*
-    let url = `https://uselessfacts.jsph.pl/random.json?language=en`;
+function bored(arguments, receivedMessage) {
+
+    let url = `https://www.boredapi.com/api/activity`;
 
     https.get(url,(response) => {
         let body = "";
@@ -18,8 +16,8 @@ function tryCommands(arguments, receivedMessage) {
                 let json = JSON.parse(body);
                 // do something with JSON
                 //console.log(json);
-                receivedMessage.channel.send(json.text)
-                console.log(json.text);
+                //console.log(json.message);
+                receivedMessage.channel.send(json.activity);
                 
             } catch (error) {
                 console.error(error.message);
@@ -29,7 +27,6 @@ function tryCommands(arguments, receivedMessage) {
     }).on("error", (error) => {
         console.error(error.message);
     });
-    */
 }
 
-module.exports.tryCommands = tryCommands; // export your function
+module.exports.bored = bored; // export your function
