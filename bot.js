@@ -20,6 +20,7 @@ var Bored = require("./commands/bored.js");
 var CountWords = require("./commands/countwords.js");
 var CountChars = require("./commands/countchars.js");
 var Cryptode = require("./commands/cryptode.js");
+var Dictum = require("./commands/dictum.js");
 var Drunk = require("./commands/drunk.js");
 var Fortune = require("./commands/fortune.js");
 var Note = require("./commands/note.js");
@@ -110,6 +111,9 @@ function processCommand(receivedMessage, thisPrefix) {
         case "countchars":
         case "cc":
             CountChars.countchars(arguments, receivedMessage)
+            break;
+        case "dictum":
+            Dictum.dictum(arguments, receivedMessage)
             break;
         case "drunk":
         case "high":
@@ -237,6 +241,13 @@ function help(arguments, receivedMessage) {
                 inline: true
             },
             { 
+                name: "Utility", 
+                value: 
+                "`countchars`, `cc` : Counting characters (including space)\n" +
+                "`countwords`, `cw` : Counting words\n" +
+                "`note` : Note for yourself\n"
+            },
+            { 
                 name: "Fun", 
                 value: 
                 "`alias`, `ag` : Alias name generator\n" +
@@ -249,24 +260,18 @@ function help(arguments, receivedMessage) {
                 inline: false
             },
             { 
-                name: "Utility", 
-                value: 
-                "`countchars`, `cc` : Counting characters (including space)\n" +
-                "`countwords`, `cw` : Counting words\n" +
-                "`note` : Note for yourself\n"
-            },
-            { 
                 name: "Random", 
                 value: 
                 "`advice` : Generate random advice slips\n" +
                 "`bored` : Random activities to fight boredom\n" +
+                "`dictum` : Expressions of mankind\n" +
                 "`techy` : Tech-savvy sounding phrases\n" +
                 "`uselessfacts`, `uf` : Get useless, but true facts\n" +
                 "`xkcd` : xkcd comics\n"
             }
         ])
-        .setTimestamp()
-        .setFooter({ text: "Bot made by Rixuel" });
+        .setFooter({ text: "Bot made by Rixuel" })
+        .setTimestamp();
 
     receivedMessage.channel.send({ embeds : [embedHelpMessage] })
 }
