@@ -1,6 +1,6 @@
 FROM node:latest
-WORKDIR .
+WORKDIR /bot
 COPY package.json
 RUN npm install
-COPY .
+COPY . /bot
 CMD ["node", "bot.js"]
