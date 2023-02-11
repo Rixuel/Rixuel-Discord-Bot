@@ -1,3 +1,6 @@
-[build]
-  builder = "paketobuildpacks/builder:base"
-  buildpacks = ["gcr.io/paketo-buildpacks/nodejs"]
+FROM node:latest
+WORKDIR .
+COPY package.json
+RUN npm install
+COPY .
+CMD ["node", "bot.js"]
