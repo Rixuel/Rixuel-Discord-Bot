@@ -4,3 +4,7 @@ kill_timeout = 5
 processes = []
 
 [env]
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
