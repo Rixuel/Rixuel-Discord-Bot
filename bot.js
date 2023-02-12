@@ -270,7 +270,7 @@ function help(arguments, receivedMessage) {
                 "`xkcd` : xkcd comics\n"
             }
         ])
-        .setFooter({ text: "Bot v1 made by Rixuel" })
+        .setFooter({ text: "Bot v2 made by Rixuel" })
         .setTimestamp();
 
     receivedMessage.channel.send({ embeds : [embedHelpMessage] })
