@@ -2,7 +2,7 @@ const https = require("https")
 
 function uselessfacts(arguments, receivedMessage) {
 
-    let url = `https://uselessfacts.jsph.pl/random.json?language=en`;
+    let url = `https://uselessfacts.jsph.pl/api/v2/facts/random?language=en`;
 
     https.get(url,(response) => {
         let body = "";
