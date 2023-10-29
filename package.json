@@ -13,7 +13,7 @@
         "lodash": "^4.17.21",
         "request": "^2.88.2",
         "tough-cookie": "~2.5.0",
-        "undici": "^5.22.1",
+        "undici": "^5.26.2",
         "winston": "^3.11.0"
     }
 }
