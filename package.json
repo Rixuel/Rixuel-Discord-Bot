@@ -9,7 +9,7 @@
     "author": "Rixuel Neoliv",
     "dependencies": {
         "discord.js": "^14.21.0",
-        "form-data": ">=2.5.4",
+        "form-data": ">=2.5.5",
         "jsonschema": "^1.4.1",
         "lodash": "^4.17.21",
         "tough-cookie": "~4.1.3",
